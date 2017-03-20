@@ -46,7 +46,6 @@ public class LoginServletTest {
 	}
 	
 	public void testLoginBadCreds1() {
-		model.setMax(100);
-		assertEquals(100, model.getMax());
+		
 	}
 }
