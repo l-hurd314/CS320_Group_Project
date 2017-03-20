@@ -28,21 +28,20 @@ public class SignUpAjaxServlet extends HttpServlet {
 		// Get parameters
 		Double first = getDouble(req, "first");
 		Double second = getDouble(req, "second");
-		Double third = getDouble(req, "third");
 		
 		// Check whether parameters are valid
-		if (first == null || second == null || third == null) {
+		if (first == null || second == null) {
 			badRequest("Bad parameters", resp);
 			return;
 		}
 		
 		// Use a controller to process the request
 		NumbersController controller = new NumbersController();
-		Double result = controller.add(first, second, third);
+		//Double result = controller.add(first, second);
 		
 		// Send back a response
 		resp.setContentType("text/plain");
-		resp.getWriter().println(result.toString());
+		//resp.getWriter().println(result.toString());
 	}
 
 	private Double getDouble(HttpServletRequest req, String name) {

@@ -24,7 +24,7 @@
 					$.ajax({
 						type: 'POST',
 						url: '/lab12/ajax/signUp',
-						data: { first: $("#firstNumberElt").val(), second: $("#secondNumberElt").val(), third: $("thirdNumberElt").val() },
+						data: { first: $("#firstNumberElt").val(), second: $("#secondNumberElt").val() },
 						success:
 							function(data, textStatus, jqXHR) {
 								$("#resultElt").text(data);
@@ -43,25 +43,15 @@
 	<body>
 		<table>
 			<tr>
-				<td class="label">First number:</td>
+				<td class="label">Username:</td>
 				<td><input id="firstNumberElt" type="text" size="12" /></td>
 			</tr>
 			<tr>
-				<td class="label">Second number:</td>
+				<td class="label">Password:</td>
 				<td><input id="secondNumberElt" type="text" size="12" /></td>
 			</tr>
-			<tr>
-				<td class="label">Third number:</td>
-				<td><input id="thirdNumberElt" type="text" size="12" /></td>
-			</tr>
-			<tr>
-				<td class="label">Result:</td>
-				<td><span id="resultElt"></span></td>
-			</tr>
+
 		</table>
-		<div>
-			<button id="addNumbersButton">Add Numbers</button>
-		</div>
 		<div>
 			<span id="errorElt" class="error"></span>
 		</div>

@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<title>Add Numbers</title>
+		<title>Sign Up</title>
 		<style type="text/css">
 		.error {
 			color: red;
@@ -24,23 +24,14 @@
 		<form action="${pageContext.servletContext.contextPath}/signUp" method="post">
 			<table>
 				<tr>
-					<td class="label">First number:</td>
+					<td class="label">Username:</td>
 					<td><input type="text" name="first" size="12" value="${game.value1}" /></td>
 				</tr>
 				<tr>
-					<td class="label">Second number:</td>
+					<td class="label">Password:</td>
 					<td><input type="text" name="second" size="12" value="${game.value2}" /></td>
 				</tr>
-				<tr>
-					<td class="label">Third number:</td>
-					<td><input type="text" name="third" size="12" value="${game.value3}" /></td>
-				</tr>
-				<tr>
-					<td class="label">Result:</td>
-					<td>${game.result}</td>
-				</tr>
 			</table>
-			<input type="Submit" name="submit" value="Add Numbers!">
 		</form>
 		
 		<form action="${pageContext.servletContext.contextPath}/signUp" method="post">

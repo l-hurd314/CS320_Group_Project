@@ -30,6 +30,10 @@
     <servlet-name>SignUpServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.ms1.servlet.SignUpServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UserHomeServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.ms1.servlet.UserHomeServlet</servlet-class>
+  </servlet>
   
   <!-- AJAX servlets. -->
   <servlet>
@@ -78,6 +82,10 @@
     <servlet-name>SignUpServlet</servlet-name>
     <url-pattern>/signUp</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserHomeServlet</servlet-name>
+    <url-pattern>/UserHome</url-pattern>
+  </servlet-mapping>
   
   <!--  AJAX servlet mappings. -->
   <servlet-mapping>
@@ -100,6 +108,7 @@
     <servlet-name>SignUpAjaxServlet</servlet-name>
     <url-pattern>/ajax/signUp</url-pattern>
   </servlet-mapping>
+  
 
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
