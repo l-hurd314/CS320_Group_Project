@@ -32,7 +32,7 @@ public class UserHomeServlet extends HttpServlet {
 				throws ServletException, IOException {
 			
 			if(req.getParameter("Post") != null){
-				resp.sendRedirect(req.getContextPath() + "/addNumbers");
+				resp.sendRedirect(req.getContextPath() + "/Post");
 			}
 			
 		
