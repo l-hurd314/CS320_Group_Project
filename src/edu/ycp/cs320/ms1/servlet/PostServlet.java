@@ -24,7 +24,7 @@ public class PostServlet extends HttpServlet {
 		
 		
 		
-		req.getRequestDispatcher("/_view/UserHome.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/Post.jsp").forward(req, resp);
 		
 		
 	}

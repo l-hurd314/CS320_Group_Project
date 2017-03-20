@@ -27,7 +27,7 @@ public class SignUpServlet extends HttpServlet {
 		// Decode form parameters and dispatch to controller
 		
 		if(req.getParameter("login") != null){
-			resp.sendRedirect(req.getContextPath() + "/UserHome");
+			resp.sendRedirect(req.getContextPath() + "/Post");
 		}
 		
 		/*if(username.equals("Test")){
