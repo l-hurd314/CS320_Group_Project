@@ -24,10 +24,10 @@
 					$.ajax({
 						type: 'POST',
 						url: '/lab12/ajax/login',
-						data: { first: $("#firstNumberElt").val(), second: $("#secondNumberElt").val() },
+						data: { first: $("#username").val(), second: $("#password").val() },
 						success:
 							function(data, textStatus, jqXHR) {
-								$("#resultElt").text(data);
+/*this redirects?*/				$("#resultElt").text(data);
 							},
 						error:
 							function(jqXHR, textStatus, errorThrown) {
@@ -43,12 +43,12 @@
 	<body>
 		<table>
 			<tr>
-				<td class="label">First number:</td>
-				<td><input id="firstNumberElt" type="text" size="12" /></td>
+				<td class="label">Username:</td>
+				<td><input id="username" type="text" size="12" /></td>
 			</tr>
 			<tr>
-				<td class="label">Second number:</td>
-				<td><input id="secondNumberElt" type="text" size="12" /></td>
+				<td class="label">Password:</td>
+				<td><input id="password" type="text" size="12" /></td>
 			</tr>
 			<tr>
 				<td class="label">Result:</td>
@@ -56,7 +56,7 @@
 			</tr>
 		</table>
 		<div>
-			<button id="multNumbersButton">Multiply Numbers</button>
+			<button id="loginButton">Log In</button>
 		</div>
 		<div>
 			<span id="errorElt" class="error"></span>
