@@ -24,11 +24,11 @@
 		<form action="${pageContext.servletContext.contextPath}/signUp" method="post">
 			<table>
 				<tr>
-					<td class="label">Username:</td>
+					<td class="label">Create Username:</td>
 					<td><input type="text" name="first" size="12" value="${game.value1}" /></td>
 				</tr>
 				<tr>
-					<td class="label">Password:</td>
+					<td class="label">Create Password:</td>
 					<td><input type="text" name="second" size="12" value="${game.value2}" /></td>
 				</tr>
 			</table>

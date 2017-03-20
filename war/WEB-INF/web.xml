@@ -34,6 +34,10 @@
     <servlet-name>UserHomeServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.ms1.servlet.UserHomeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>PostServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.ms1.servlet.PostServlet</servlet-class>
+  </servlet>
   
   <!-- AJAX servlets. -->
   <servlet>
@@ -85,6 +89,10 @@
   <servlet-mapping>
     <servlet-name>UserHomeServlet</servlet-name>
     <url-pattern>/UserHome</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PostServlet</servlet-name>
+    <url-pattern>/Post</url-pattern>
   </servlet-mapping>
   
   <!--  AJAX servlet mappings. -->
