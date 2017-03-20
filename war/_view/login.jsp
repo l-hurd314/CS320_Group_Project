@@ -24,19 +24,15 @@
 		<form action="${pageContext.servletContext.contextPath}/Login" method="post">
 			<table>
 				<tr>
-					<td class="label">First number:</td>
-					<td><input type="text" name="first" size="12" value="${game.value1}" /></td>
+					<td class="label">Username:</td>
+					<td><input type="text" name="username" size="12" value="${game.value1}" /></td>
 				</tr>
 				<tr>
-					<td class="label">Second number:</td>
-					<td><input type="text" name="second" size="12" value="${game.value2}" /></td>
-				</tr>
-				<tr>
-					<td class="label">Result:</td>
-					<td>${game.result}</td>
+					<td class="label">Password:</td>
+					<td><input type="text" name="password" size="12" value="${game.value2}" /></td>
 				</tr>
 			</table>
-			<input type="Submit" name="submit" value="Multiply Numbers!">
+			<input type="Submit" name="login" value="Log In">
 		</form>
 	</body>
 </html>
