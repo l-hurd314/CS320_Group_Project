@@ -22,22 +22,14 @@ public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//Numbers model = new Numbers();
-		
-		// Decode form parameters and dispatch to controller
 		
 		if(req.getParameter("login") != null){
 			resp.sendRedirect(req.getContextPath() + "/UserHome");
 		}
-		
-		/*if(username.equals("Test")){
-			
-		}
+
 		
 		
-		
-		
-		String errorMessage = null;
+		/*String errorMessage = null;
 		if(req.getParameter("login") != null){
 			resp.sendRedirect(req.getContextPath() + "/Login");
 		}
