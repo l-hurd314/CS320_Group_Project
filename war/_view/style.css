@@ -49,6 +49,7 @@ input.login {
     margin-bottom: 10px;
     float: right;
     font-family: "Comic Sans MS", cursive, sans-serif;
+    cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
 input.signup {
@@ -63,6 +64,7 @@ input.signup {
     margin-bottom: 10px;
     float: left;
     font-family: "Comic Sans MS", cursive, sans-serif;
+    cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
 input.login:hover {
@@ -87,6 +89,7 @@ input.login_page_button{
     margin-bottom: 10px;
     float: left;
     font-family: "Comic Sans MS", cursive, sans-serif;
+    cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
 input.login_page {
@@ -100,6 +103,7 @@ input.login_page {
     margin-bottom: 10px;
     float: left;
 	width: 175px;
+	cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
 input.login_page:hover {
@@ -111,6 +115,7 @@ input.login_page:hover {
 	 font-family: "Comic Sans MS", cursive, sans-serif;
 	 font-size: 105%;
 	 color: #727bff;
+	 cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
 /* unvisited link */
@@ -131,4 +136,8 @@ a:hover {
 /* selected link */
 a:active {
     color: lightblue;
+}
+
+.cursor {
+   cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
