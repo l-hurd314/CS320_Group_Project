@@ -1,0 +1,7 @@
+// Matt Ritchie
+-add auto logout from time inactive. (10min or so from load to post)
+-fake database doesn't persist, run query right after insert to check for success
+-CSS cached in browser, if changes to layout don't appear, wipe cache
+
+
+Liam and Melssia, ask me about process for lab6, Hake explained it to me, can show visually via video chat.
