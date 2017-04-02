@@ -1,0 +1,108 @@
+body {
+
+} 
+
+#background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1;
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+.header{
+	text-align: left;
+	font-size: 300%;
+	font-weight: bold;
+	font-variant: small-caps; 
+	color: #7fb0ff;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.main_bar{
+	background-color: #66a0ff;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+	height: 50px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 200%;
+	color: white;
+	text-align: center;
+}
+
+input.login {
+	width: 100px;
+	height: 30px;
+	background-color: white;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: right;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+input.signup {
+	width: 100px;
+	height: 30px;
+	background-color: white;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    float: left;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+input.login:hover {
+    background-color: #9ec2ff;
+    color: white;
+}
+
+input.signup:hover {
+    background-color: #9ec2ff;
+    color: white;
+}
+
+input.login_page_button{
+	width: 100px;
+	height: 30px;
+	background-color: white;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 8px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    float: left;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+input.login_page {
+	background-color: white;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+	width: 175px;
+}
+
+input.login_page:hover {
+    background-color: #9ec2ff;
+    color: white;
+}

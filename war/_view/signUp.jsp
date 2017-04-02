@@ -5,13 +5,17 @@
 <html>
 	<head>
 		<title>Sign Up</title>
+		
+		<link rel="stylesheet" type="text/css" href="_view/style.css">
+		
 		<style type="text/css">
 		.error {
 			color: red;
 		}
 		
 		td.label {
-			text-align: right;
+			text-align: left;
+			font-family: "Comic Sans MS", cursive, sans-serif;
 		}
 		</style>
 	</head>
@@ -20,22 +24,36 @@
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
 		</c:if>
-	
-		<form action="${pageContext.servletContext.contextPath}/signUp" method="post">
-			<table>
-				<tr>
-					<td class="label">Create Username:</td>
-					<td><input type="text" name="first" size="12" value="${game.value1}" /></td>
-				</tr>
-				<tr>
-					<td class="label">Create Password:</td>
-					<td><input type="text" name="second" size="12" value="${game.value2}" /></td>
-				</tr>
-			</table>
-		</form>
 		
-		<form action="${pageContext.servletContext.contextPath}/signUp" method="post">
-			<input name="login" type="Submit" value="Sign Up">
-		</form>
+		<div id="background">
+    		<img src="http://www.wallcoo.net/flower/SZ_186_CG_Digital_Flowers/images/HS066_350AA.jpg" class="stretch" alt="" />
+		</div>
+		
+		<div class="header"> 
+			Photo/File Forum 
+	    </div>   
+	    
+	    <div class="main_bar"> 
+			Welcome! 
+	    </div> 
+	
+		<div>
+			<form action="${pageContext.servletContext.contextPath}/signUp" method="post">
+				<table>
+					<tr>
+						<td class="label">Create Username:</td>
+						<td><input type="text" name="first" size="12" class="login_page" value="${game.value1}" /></td>
+					</tr>
+					<tr>
+						<td class="label">Create Password:</td>
+						<td><input type="text" name="second" size="12" class="login_page" value="${game.value2}" /></td>
+					</tr>
+				</table>
+			</form>
+			
+			<form action="${pageContext.servletContext.contextPath}/signUp" method="post">
+				<input name="login" type="Submit" value="Sign Up" class="login_page_button" class="login_page:hover">
+			</form>
+		</div>
 	</body>
 </html>
