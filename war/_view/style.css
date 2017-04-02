@@ -106,3 +106,29 @@ input.login_page:hover {
     background-color: #9ec2ff;
     color: white;
 }
+
+.postList{
+	 font-family: "Comic Sans MS", cursive, sans-serif;
+	 font-size: 105%;
+	 color: #727bff;
+}
+
+/* unvisited link */
+a:link {
+    color: #727bff;
+}
+
+/* visited link */
+a:visited {
+    color: #ba82f2;
+}
+
+/* mouse over link */
+a:hover {
+    color: #66a0ff;
+}
+
+/* selected link */
+a:active {
+    color: lightblue;
+}
