@@ -32,11 +32,12 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("username", username);
 			resp.sendRedirect(req.getContextPath() + "/UserHome");
 		}
-		else{
+		resp.sendRedirect(req.getContextPath() + "/UserHome");
+		/*else{
 			errorMessage = "Invalid Login.";
 			req.setAttribute("errorMessage", errorMessage);
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-		}
+		}*/
 		
 		
 		/*
