@@ -3,11 +3,11 @@ package edu.ycp.cs320.ms1.postsdb;
 import java.util.List;
 import java.util.Scanner;
 
-import edu.ycp.cs320.ms1.postsdb.model.Author;
-import edu.ycp.cs320.ms1.postsdb.model.Book;
-import edu.ycp.cs320.ms1.postsdb.model.Pair;
-import edu.ycp.cs320.ms1.postsdb.persist.DatabaseProvider;
-import edu.ycp.cs320.ms1.postsdb.persist.IDatabase;
+import edu.ycp.cs320.ms1.model.User;
+import edu.ycp.cs320.ms1.model.TextPost;
+import edu.ycp.cs320.ms1.model.Pair;
+import edu.ycp.cs320.ms1.persist.DatabaseProvider;
+import edu.ycp.cs320.ms1.persist.IDatabase;
 
 public class TitleQuery {
 	public static void main(String[] args) throws Exception {
@@ -21,17 +21,17 @@ public class TitleQuery {
 		
 		// get the DB instance and execute transaction
 		IDatabase db = DatabaseProvider.getInstance();
-		List<Pair<Author, Book>> authorBookList = db.findAuthorAndBookByTitle(title);
+		List<Pair<User, TextPost>> authorBookList = db.findUserAndTextPostByTitle(title);
 		
 		// check if anything was returned and output the list
 		if (authorBookList.isEmpty()) {
 			System.out.println("No books found with title <" + title + ">");
 		}
 		else {
-			for (Pair<Author, Book> authorBook : authorBookList) {
-				Author author = authorBook.getLeft();
-				Book book = authorBook.getRight();
-				System.out.println(author.getLastname() + "," + author.getFirstname() + "," + book.getTitle() + "," + book.getIsbn() + "," + book.getPublished());
+			for (Pair<User, TextPost> authorBook : authorBookList) {
+				User user = authorBook.getLeft();
+				TextPost post = authorBook.getRight();
+				System.out.println(user.getPassword() + "," + user.getUsername() + "," + post.getTitle() + "," + post.getContents());
 			}
 		}
 	}
