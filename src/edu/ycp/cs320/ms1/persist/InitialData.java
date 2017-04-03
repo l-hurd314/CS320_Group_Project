@@ -5,36 +5,36 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import edu.ycp.cs320.booksdb.model.Author;
-import edu.ycp.cs320.booksdb.model.Book;
+import edu.ycp.cs320.ms1.model.User;
+import edu.ycp.cs320.ms1.model.TextPost;
 
 public class InitialData {
-	public static List<Author> getAuthors() throws IOException {
-		List<Author> authorList = new ArrayList<Author>();
-		ReadCSV readAuthors = new ReadCSV("authors.csv");
+	public static List<User> getUsers() throws IOException {
+		List<User> userList = new ArrayList<User>();
+		ReadCSV readUsers = new ReadCSV("users.csv");
 		try {
-			// auto-generated primary key for authors table
-			Integer authorId = 1;
+			// auto-generated primary key for users table
+			Integer userId = 1;
 			while (true) {
-				List<String> tuple = readAuthors.next();
+				List<String> tuple = readUsers.next();
 				if (tuple == null) {
 					break;
 				}
 				Iterator<String> i = tuple.iterator();
-				Author author = new Author();
-				author.setAuthorId(authorId++);				
-				author.setLastname(i.next());
-				author.setFirstname(i.next());
-				authorList.add(author);
+				User user = new User();
+				user.setUserId(userId++);				
+				user.setPassword(i.next());
+				user.setUsername(i.next());
+				userList.add(user);
 			}
-			return authorList;
+			return userList;
 		} finally {
-			readAuthors.close();
+			readUsers.close();
 		}
 	}
 	
-	public static List<Book> getBooks() throws IOException {
-		List<Book> bookList = new ArrayList<Book>();
+	public static List<TextPost> getTextPosts() throws IOException {
+		List<TextPost> bookList = new ArrayList<TextPost>();
 		ReadCSV readBooks = new ReadCSV("books.csv");
 		try {
 			// auto-generated primary key for books table
@@ -45,12 +45,12 @@ public class InitialData {
 					break;
 				}
 				Iterator<String> i = tuple.iterator();
-				Book book = new Book();
-				book.setBookId(bookId++);
-				book.setAuthorId(Integer.parseInt(i.next()));
+				TextPost book = new TextPost();
+				book.setPostId(bookId++);
+				book.setUserId(Integer.parseInt(i.next()));
 				book.setTitle(i.next());
-				book.setIsbn(i.next());
-				book.setPublished(Integer.parseInt(i.next()));
+				book.setContents(i.next());
+				//book.setPublished(Integer.parseInt(i.next()));
 				bookList.add(book);
 			}
 			return bookList;

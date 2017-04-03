@@ -6,52 +6,51 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.ycp.cs320.ms1.model.User;
-import edu.ycp.cs320.ms1.model.Book;
-import edu.ycp.cs320.booksdb.model.Pair;
+import edu.ycp.cs320.ms1.model.Pair;
+import edu.ycp.cs320.ms1.model.TextPost;
 
-public class FakeDatabase implements IDatabase {
+public class FakeDatabase{
 	
-	private List<User> authorList;
-	private List<Book> bookList;
+	private List<User> userList;
+	private List<TextPost> postList;
 	
 	public FakeDatabase() {
-		authorList = new ArrayList<Author>();
-		bookList = new ArrayList<Book>();
+		userList = new ArrayList<User>();
+		postList = new ArrayList<TextPost>();
 		
 		// Add initial data
 		readInitialData();
 		
-		System.out.println(authorList.size() + " authors");
-		System.out.println(bookList.size() + " books");
+		System.out.println(userList.size() + " users");
+		System.out.println(postList.size() + " textTextPosts");
 	}
 
 	public void readInitialData() {
 		try {
-			authorList.addAll(InitialData.getAuthors());
-			bookList.addAll(InitialData.getBooks());
+			userList.addAll(InitialData.getUsers());
+			postList.addAll(InitialData.getTextPosts());
 		} catch (IOException e) {
 			throw new IllegalStateException("Couldn't read initial data", e);
 		}
 	}
 	
-	@Override
-	public List<Pair<Author, Book>> findAuthorAndBookByTitle(String title) {
-		List<Pair<Author, Book>> result = new ArrayList<Pair<Author,Book>>();
-		for (Book book : bookList) {
-			if (book.getTitle().equals(title)) {
-				Author author = findAuthorByAuthorId(book.getAuthorId());
-				result.add(new Pair<Author, Book>(author, book));
+	public List<Pair<User, TextPost>> findUserAndTextPostByTitle(String title) {
+		List<Pair<User, TextPost>> result = new ArrayList<Pair<User,TextPost>>();
+		for (TextPost post : postList) {
+			if (post.getTitle().equals(title)) {
+				User user = findUserByUserId(post.getUserId());
+				result.add(new Pair<User, TextPost>(user, post));
 			}
 		}
 		return result;
 	}
-	public List<Pair<Author, Book>> findAuthorAndBookByAuthorLastName(String lastname){
-		List<Pair<Author, Book>> result = new ArrayList<Pair<Author,Book>>();
-		for(Author author : authorList){
-			if(author.getLastname().equals(lastname)){
-				for (Book book : bookList) {
-					if (book.getAuthorId() == author.getAuthorId()) {
-						result.add(new Pair<Author, Book>(author, book));
+	public List<Pair<User, TextPost>> findUserAndTextPostByUserLastName(String lastname){
+		List<Pair<User, TextPost>> result = new ArrayList<Pair<User,TextPost>>();
+		for(User user : userList){
+			if(user.getPassword().equals(lastname)){
+				for (TextPost post : postList) {
+					if (post.getUserId() == user.getUserId()) {
+						result.add(new Pair<User, TextPost>(user, post));
 					}
 				}
 			}
@@ -59,39 +58,39 @@ public class FakeDatabase implements IDatabase {
 		return result;
 	}
 	
-	public void addBook(String lastname, String firstname, String isbn, String title, int year){
-		boolean authorFound = false;
-		Author bookAuthor = new Author();
-		for(Author author : authorList){
-			if(author.getLastname().equals(lastname) && author.getFirstname().equals(firstname)){
-				authorFound = true;
-				bookAuthor = author;
+	public void addTextPost(String lastname, String firstname, String isbn, String title, int year){
+		boolean userFound = false;
+		User postUser = new User();
+		for(User user : userList){
+			if(user.getPassword().equals(lastname) && user.getUsername().equals(firstname)){
+				userFound = true;
+				postUser = user;
 				break;
 			}
 		}
-		if(!authorFound){
-			bookAuthor.setFirstname(firstname);
-			bookAuthor.setLastname(lastname);
-			bookAuthor.setAuthorId(authorList.size() + 1);
-			authorList.add(bookAuthor);
+		if(!userFound){
+			postUser.setUsername(firstname);
+			postUser.setPassword(lastname);
+			postUser.setUserId(userList.size() + 1);
+			userList.add(postUser);
 		}
 		
-		Book book = new Book();
-		book.setAuthorId(bookAuthor.getAuthorId());
-		book.setIsbn(isbn);
-		book.setPublished(year);
-		book.setTitle(title);
-		book.setBookId(bookList.size() + 1);
-		bookList.add(book);
+		TextPost post = new TextPost();
+		post.setUserId(postUser.getUserId());
+		post.setContents(isbn);
+		//post.setPublished(year);
+		post.setTitle(title);
+		post.setPostId(postList.size() + 1);
+		postList.add(post);
 		
-		System.out.println(authorList.size() + " authors");
-		System.out.println(bookList.size() + " books");
+		System.out.println(userList.size() + " users");
+		System.out.println(postList.size() + " posts");
 	}
 
-	private Author findAuthorByAuthorId(int authorId) {
-		for (Author author : authorList) {
-			if (author.getAuthorId() == authorId) {
-				return author;
+	private User findUserByUserId(int userId) {
+		for (User user : userList) {
+			if (user.getUserId() == userId) {
+				return user;
 			}
 		}
 		return null;
