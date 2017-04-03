@@ -34,28 +34,28 @@ public class InitialData {
 	}
 	
 	public static List<TextPost> getTextPosts() throws IOException {
-		List<TextPost> bookList = new ArrayList<TextPost>();
-		ReadCSV readBooks = new ReadCSV("books.csv");
+		List<TextPost> postList = new ArrayList<TextPost>();
+		ReadCSV readPosts = new ReadCSV("textPosts.csv");
 		try {
-			// auto-generated primary key for books table
-			Integer bookId = 1;
+			// auto-generated primary key for posts table
+			Integer postId = 1;
 			while (true) {
-				List<String> tuple = readBooks.next();
+				List<String> tuple = readPosts.next();
 				if (tuple == null) {
 					break;
 				}
 				Iterator<String> i = tuple.iterator();
-				TextPost book = new TextPost();
-				book.setPostId(bookId++);
-				book.setUserId(Integer.parseInt(i.next()));
-				book.setTitle(i.next());
-				book.setContents(i.next());
-				//book.setPublished(Integer.parseInt(i.next()));
-				bookList.add(book);
+				TextPost post = new TextPost();
+				post.setPostId(postId++);
+				post.setUserId(Integer.parseInt(i.next()));
+				post.setTitle(i.next());
+				post.setContents(i.next());
+				//post.setPublished(Integer.parseInt(i.next()));
+				postList.add(post);
 			}
-			return bookList;
+			return postList;
 		} finally {
-			readBooks.close();
+			readPosts.close();
 		}
 	}
 }
