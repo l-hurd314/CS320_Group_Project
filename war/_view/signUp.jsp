@@ -11,6 +11,7 @@
 		<style type="text/css">
 		.error {
 			color: red;
+			font-family: "Comic Sans MS", cursive, sans-serif;
 		}
 		
 		td.label {
@@ -53,7 +54,7 @@
 				</form>
 				
 				<form action="${pageContext.servletContext.contextPath}/signUp" method="post">
-					<input name="login" type="Submit" value="Sign Up" class="login_page_button" class="login_page:hover">
+					<input name="login" type="Submit" value="Sign Up" class="login_page_button" class="login_page_button:hover">
 				</form>
 			</div>
 		</div>

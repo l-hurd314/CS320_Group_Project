@@ -92,6 +92,11 @@ input.login_page_button{
     cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
+input.login_page_button:hover {
+    background-color: #9ec2ff;
+    color: white;
+}
+
 input.login_page {
 	background-color: white;
 	font-family: "Comic Sans MS", cursive, sans-serif;
@@ -103,7 +108,6 @@ input.login_page {
     margin-bottom: 10px;
     float: left;
 	width: 175px;
-	cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
 input.login_page:hover {
@@ -115,7 +119,6 @@ input.login_page:hover {
 	 font-family: "Comic Sans MS", cursive, sans-serif;
 	 font-size: 105%;
 	 color: #727bff;
-	 cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
 }
 
 /* unvisited link */

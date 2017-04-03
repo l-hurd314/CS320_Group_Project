@@ -11,6 +11,7 @@
 		<style type="text/css">
 		.error {
 			color: red;
+			font-family: "Comic Sans MS", cursive, sans-serif;
 		}
 		
 		td.label {
@@ -50,7 +51,9 @@
 							<td><input type="text" name="password" size="12" class="login_page" value="${game.value2}" /></td>
 						</tr>
 					</table>
-					<input type="Submit" name="login" value="Log In" class="login_page_button" class="login_page:hover">
+					
+					<input type="Submit" name="login" value="Log In" class="login_page_button" class="login_page_button:hover">
+				
 				</form>
 			</div>
 		</div>
