@@ -16,54 +16,54 @@ public class UserTest {
 	}
 	
 	@Test
-	public void testSetGetFirstname() {
-		testUser.setFirstname("Melissa");
-		assertEquals("Melissa", testUser.getFirstname());
+	public void testSetGetUsername() {
+		testUser.setUsername("Melissa");
+		assertEquals("Melissa", testUser.getUsername());
 	}
 	
 	@Test
-	public void testSetGetFirstname2() {
-		testUser.setFirstname("Liam");
-		assertEquals("Liam", testUser.getFirstname());
+	public void testSetGetUsername2() {
+		testUser.setUsername("Liam");
+		assertEquals("Liam", testUser.getUsername());
 	}
 	
 	@Test
-	public void testSetGetFirstname3() {
-		testUser.setFirstname("Matt");
-		assertEquals("Matt", testUser.getFirstname());
+	public void testSetGetUsername3() {
+		testUser.setUsername("Matt");
+		assertEquals("Matt", testUser.getUsername());
 	}
 	
 	@Test
 	public void testSetGetLastname() {
-		testUser.setLastname("Ritchie");
-		assertEquals("Ritchie", testUser.getLastname());
+		testUser.setPassword("Ritchie");
+		assertEquals("Ritchie", testUser.getPassword());
 	}
 	
 	@Test
 	public void testSetGetLastname2() {
-		testUser.setLastname("Hurd");
-		assertEquals("Hurd", testUser.getLastname());
+		testUser.setPassword("Hurd");
+		assertEquals("Hurd", testUser.getPassword());
 	}
 	
 	@Test
 	public void testSetGetLastname3() {
-		testUser.setLastname("Morrison");
-		assertEquals("Morrison", testUser.getLastname());
+		testUser.setPassword("Morrison");
+		assertEquals("Morrison", testUser.getPassword());
 	}
 	
 	@Test
 	public void testSetGetBoth() {
-		testUser.setFirstname("Matt");
-		testUser.setLastname("Ritchie");
-		assertEquals("Matt", testUser.getFirstname());
-		assertEquals("Ritchie", testUser.getLastname());
-		testUser.setFirstname("Melissa");
-		assertEquals("Melissa", testUser.getFirstname());
-		testUser.setLastname("Morrison");
-		assertEquals("Morrison", testUser.getLastname());
-		testUser.setFirstname("Liam");
-		testUser.setLastname("Hurd");
-		assertEquals("Liam", testUser.getFirstname());
-		assertEquals("Hurd", testUser.getLastname());
+		testUser.setUsername("Matt");
+		testUser.setPassword("Ritchie");
+		assertEquals("Matt", testUser.getUsername());
+		assertEquals("Ritchie", testUser.getPassword());
+		testUser.setUsername("Melissa");
+		assertEquals("Melissa", testUser.getUsername());
+		testUser.setPassword("Morrison");
+		assertEquals("Morrison", testUser.getPassword());
+		testUser.setUsername("Liam");
+		testUser.setPassword("Hurd");
+		assertEquals("Liam", testUser.getUsername());
+		assertEquals("Hurd", testUser.getPassword());
 	}
 }
