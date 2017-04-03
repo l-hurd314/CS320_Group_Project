@@ -1,13 +1,13 @@
-package edu.ycp.cs320.postsdb;
+package edu.ycp.cs320.ms1.postsdb;
 
 import java.util.List;
 import java.util.Scanner;
 
-import edu.ycp.cs320.postsdb.model.Author;
-import edu.ycp.cs320.postsdb.model.Book;
-import edu.ycp.cs320.postsdb.model.Pair;
-import edu.ycp.cs320.postsdb.persist.DatabaseProvider;
-import edu.ycp.cs320.postsdb.persist.IDatabase;
+import edu.ycp.cs320.ms1.postsdb.model.Author;
+import edu.ycp.cs320.ms1.postsdb.model.Book;
+import edu.ycp.cs320.ms1.postsdb.model.Pair;
+import edu.ycp.cs320.ms1.postsdb.persist.DatabaseProvider;
+import edu.ycp.cs320.ms1.postsdb.persist.IDatabase;
 
 //TODO: copy class file, modify to insert
 public class InstertStatement {

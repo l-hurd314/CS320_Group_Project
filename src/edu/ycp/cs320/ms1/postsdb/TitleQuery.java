@@ -1,13 +1,13 @@
-package edu.ycp.cs320.postsdb;
+package edu.ycp.cs320.ms1.postsdb;
 
 import java.util.List;
 import java.util.Scanner;
 
-import edu.ycp.cs320.postsdb.model.Author;
-import edu.ycp.cs320.postsdb.model.Book;
-import edu.ycp.cs320.postsdb.model.Pair;
-import edu.ycp.cs320.postsdb.persist.DatabaseProvider;
-import edu.ycp.cs320.postsdb.persist.IDatabase;
+import edu.ycp.cs320.ms1.postsdb.model.Author;
+import edu.ycp.cs320.ms1.postsdb.model.Book;
+import edu.ycp.cs320.ms1.postsdb.model.Pair;
+import edu.ycp.cs320.ms1.postsdb.persist.DatabaseProvider;
+import edu.ycp.cs320.ms1.postsdb.persist.IDatabase;
 
 public class TitleQuery {
 	public static void main(String[] args) throws Exception {

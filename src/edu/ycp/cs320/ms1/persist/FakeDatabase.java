@@ -9,7 +9,7 @@ import edu.ycp.cs320.ms1.model.User;
 import edu.ycp.cs320.ms1.model.Pair;
 import edu.ycp.cs320.ms1.model.TextPost;
 
-public class FakeDatabase{
+public class FakeDatabase implements IDatabase{
 	
 	private List<User> userList;
 	private List<TextPost> postList;
@@ -94,5 +94,19 @@ public class FakeDatabase{
 			}
 		}
 		return null;
+	}
+
+	
+	//auto-generated stuff
+	@Override
+	public List<Pair<User, TextPost>> findUserAndTextPostByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addTextPost(String username, String contents, String title) {
+		// TODO Auto-generated method stub
+		
 	}
 }
