@@ -16,6 +16,14 @@ body {
     height:100%;
 }
 
+.img {
+	margin: auto;
+	margin-top: 50px;
+    text-align: center; 
+    overflow: hidden;
+	display: block;
+}
+
 .header{
 	text-align: left;
 	font-size: 300%;

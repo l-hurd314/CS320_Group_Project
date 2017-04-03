@@ -32,6 +32,10 @@
 			 <div class="main_bar"> 
 				Welcome! 
 		    </div> 
+		    
+		    <div class="img">
+		    	<img src="https://68.media.tumblr.com/eef642c1e3777674f4343757b991a208/tumblr_om7oe5g4CA1u3233wo2_1280.jpg" alt=""/>
+		    </div>
 	    
 	    </div>
 	</body>
