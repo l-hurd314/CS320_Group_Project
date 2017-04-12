@@ -13,8 +13,17 @@ import edu.ycp.cs320.ms1.model.TextPost;
 
 
 public interface IDatabase {
+	
 	public List<Pair<User, TextPost>> findUserAndTextPostByTitle(String title);
+	
 	public List<Pair<User, TextPost>> findUserAndTextPostByUsername(String username);
+	
+	/**
+	 * must fetch user ID based on username, then create new entry 
+	 * @param username
+	 * @param contents
+	 * @param title
+	 */
 	public void addTextPost(String username, String contents, String title);
 	//public List<Pair<User, TextPost>> findUserAndTextPostByUsername(username);
 }
