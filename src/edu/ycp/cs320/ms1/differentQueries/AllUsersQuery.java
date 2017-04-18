@@ -8,7 +8,7 @@ import edu.ycp.cs320.ms1.model.User;
 import edu.ycp.cs320.ms1.persist.DatabaseProvider;
 import edu.ycp.cs320.ms1.persist.IDatabase;
 
-public class AllAuthorsQuery {
+public class AllUsersQuery {
 	public static void main(String[] args) throws Exception {
 		Scanner keyboard = new Scanner(System.in);
 
@@ -17,14 +17,14 @@ public class AllAuthorsQuery {
 		
 		// get the DB instance and execute transaction
 		IDatabase db = DatabaseProvider.getInstance();
-		List<User> authorList = db.findAllUsers();
+		List<User> userList = db.findAllUsers();
 		
 		// check if anything was returned and output the list
-		if (authorList.isEmpty()) {
-			System.out.println("There are no authors in the database");
+		if (userList.isEmpty()) {
+			System.out.println("There are no users in the database");
 		}
 		else {
-			for (User user : authorList) {
+			for (User user : userList) {
 				System.out.println(user.getUsername());
 			}
 		}

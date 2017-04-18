@@ -32,7 +32,8 @@ public class DerbyDatabase implements IDatabase {
 
 	private static final int MAX_ATTEMPTS = 10;
 
-	
+//TODO not yet converted, commented out for later
+/*	
 	// transaction that retrieves a TextPost, and its User by Title
 	@Override
 	public List<Pair<User, TextPost>> findAuthorAndBookByTitle(final String title) {
@@ -83,8 +84,9 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-	
-	
+*/	
+//TODO not yet converted, commented out for later
+	/*
 	// transaction that retrieves a list of Books with their Authors, given User's last name
 	@Override
 	public List<Pair<User, TextPost>> findAuthorAndBookByAuthorLastName(final String lastName) {
@@ -128,8 +130,9 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-	
-	
+	*/
+//TODO not yet converted, commented out for later
+	/*
 	// transaction that retrieves all Books in Library, with their respective Authors
 	@Override
 	public List<Pair<User, TextPost>> findAllBooksWithAuthors() {
@@ -179,11 +182,11 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}	
-	
+	*/
 	
 	// transaction that retrieves all Authors in Library
 	@Override
-	public List<User> findAllAuthors() {
+	public List<User> findAllUsers() {
 		return executeTransaction(new Transaction<List<User>>() {
 			@Override
 			public List<User> execute(Connection conn) throws SQLException {
@@ -192,8 +195,8 @@ public class DerbyDatabase implements IDatabase {
 				
 				try {
 					stmt = conn.prepareStatement(
-							"select * from authors " +
-							" order by lastname asc, firstname asc"
+							"select * from users " +
+							" order by username asc"
 					);
 					
 					List<User> result = new ArrayList<User>();
@@ -206,15 +209,15 @@ public class DerbyDatabase implements IDatabase {
 					while (resultSet.next()) {
 						found = true;
 						
-						User author = new User();
-						loadAuthor(author, resultSet, 1);
+						User user = new User();
+						loadUser(user, resultSet, 1);
 						
-						result.add(author);
+						result.add(user);
 					}
 					
-					// check if any authors were found
+					// check if any users were found
 					if (!found) {
-						System.out.println("No authors were found in the database");
+						System.out.println("No users were found in the database");
 					}
 					
 					return result;
@@ -231,7 +234,8 @@ public class DerbyDatabase implements IDatabase {
 	// also first inserts new User into Authors table, if necessary
 	// and then inserts entry into BookAuthors junction table
 	@Override
-	public Integer insertBookIntoBooksTable(final String title, final String isbn, final int published, final String lastName, final String firstName) {
+	public Integer insertPostIntoPostsTable(final String title, final String userName, final String content) {
+		//Table setup: post id, user id, title, content
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
@@ -250,17 +254,18 @@ public class DerbyDatabase implements IDatabase {
 //	(unused)	ResultSet resultSet6 = null;
 				
 				// for saving author ID and book ID
-				Integer author_id = -1;
-				Integer book_id   = -1;
+				Integer user_id = -1;
+				Integer post_id   = -1;
 
 				// try to retrieve author_id (if it exists) from DB, for User's full name, passed into query
 				try {
+					//TODO: check capitalization on variable name
 					stmt1 = conn.prepareStatement(
-							"select author_id from authors " +
-							"  where lastname = ? and firstname = ? "
+							"select user_id from users " +
+							"  where username = ?"
 					);
-					stmt1.setString(1, lastName);
-					stmt1.setString(2, firstName);
+					stmt1.setString(1, userName);
+					//stmt1.setString(2, firstName);
 					
 					// execute the query, get the result
 					resultSet1 = stmt1.executeQuery();
@@ -269,35 +274,37 @@ public class DerbyDatabase implements IDatabase {
 					// if User was found then save author_id					
 					if (resultSet1.next())
 					{
-						author_id = resultSet1.getInt(1);
-						System.out.println("User <" + lastName + ", " + firstName + "> found with ID: " + author_id);						
+						user_id = resultSet1.getInt(1); //TODO: if bug, do rows match up? start at 0? 1?
+						System.out.println("User <" + userName + "> found with ID: " + user_id);						
 					}
 					else
 					{
-						System.out.println("User <" + lastName + ", " + firstName + "> not found");
-				
-						// if the User is new, insert new User into Authors table
-						if (author_id <= 0) {
-							// prepare SQL insert statement to add User to Authors table
+						System.out.println("ERROR: user should always be in users list before being allowed to post.\n"
+								+ "You should not be seeing this.");
+						System.out.println("User <" + userName + "> not found");
+						
+						// if the User is new, insert new User into Users table
+						if (user_id <= 0) {
+							// prepare SQL insert statement to add User to Users table
 							stmt2 = conn.prepareStatement(
-									"insert into authors (lastname, firstname) " +
-									"  values(?, ?) "
+									"insert into users (username) " +
+									"  values(?) "
 							);
-							stmt2.setString(1, lastName);
-							stmt2.setString(2, firstName);
+							stmt2.setString(1, userName);
+							//stmt2.setString(2, firstName);
 							
 							// execute the update
 							stmt2.executeUpdate();
 							
-							System.out.println("New author <" + lastName + ", " + firstName + "> inserted in Authors table");						
+							System.out.println("New author <" + userName + "> inserted in Users table");						
 						
 							// try to retrieve author_id for new User - DB auto-generates author_id
 							stmt3 = conn.prepareStatement(
-									"select author_id from authors " +
-									"  where lastname = ? and firstname = ? "
+									"select user_id from users " +
+									"  where userName = ?"
 							);
-							stmt3.setString(1, lastName);
-							stmt3.setString(2, firstName);
+							stmt3.setString(1, userName);
+							//stmt3.setString(2, firstName);
 							
 							// execute the query							
 							resultSet3 = stmt3.executeQuery();
@@ -305,42 +312,43 @@ public class DerbyDatabase implements IDatabase {
 							// get the result - there had better be one							
 							if (resultSet3.next())
 							{
-								author_id = resultSet3.getInt(1);
-								System.out.println("New author <" + lastName + ", " + firstName + "> ID: " + author_id);						
+								user_id = resultSet3.getInt(1);
+								System.out.println("New author <" + userName + "> ID: " + user_id);						
 							}
 							else	// really should throw an exception here - the new author should have been inserted, but we didn't find them
 							{
-								System.out.println("New author <" + lastName + ", " + firstName + "> not found in Authors table (ID: " + author_id);
+								System.out.println("New user <" + userName + "> not found in Users table (ID: " + user_id + ")");
 							}
 						}
 					}
 					
-					// now insert new TextPost into Books table
+					// now insert new TextPost into Posts table
 					// prepare SQL insert statement to add new TextPost to Books table
+					//Table setup: post id, user id, title, content
 					stmt4 = conn.prepareStatement(
-							"insert into books (title, isbn, published) " +
+							"insert into textPosts (user_id, title, content) " +
 							"  values(?, ?, ?) "
 					);
-					stmt4.setString(1, title);
-					stmt4.setString(2, isbn);
-					stmt4.setInt(3, published);
+					stmt4.setString(2, title);
+					stmt4.setInt(1, user_id);
+					stmt4.setString(3, content);
 					
 					// execute the update
 					stmt4.executeUpdate();
 					
-					System.out.println("New book <" + title + "> inserted into Books table");					
+					System.out.println("New post <" + title + "> inserted into Posts table");					
 
 					// now retrieve book_id for new TextPost, so that we can set up BookAuthor entry
 					// and return the book_id, which the DB auto-generates
 					// prepare SQL statement to retrieve book_id for new TextPost
 					stmt5 = conn.prepareStatement(
-							"select book_id from books " +
-							"  where title = ? and isbn = ? and published = ? "
+							"select post_id from textPosts " +
+							"  where title = ? and user_id = ? and content = ? "
 									
 					);
 					stmt5.setString(1, title);
-					stmt5.setString(2, isbn);
-					stmt5.setInt(3, published);
+					stmt5.setString(3, content);
+					stmt5.setInt(2, user_id);
 
 					// execute the query
 					resultSet5 = stmt5.executeQuery();
@@ -348,14 +356,15 @@ public class DerbyDatabase implements IDatabase {
 					// get the result - there had better be one
 					if (resultSet5.next())
 					{
-						book_id = resultSet5.getInt(1);
-						System.out.println("New book <" + title + "> ID: " + book_id);						
+						post_id = resultSet5.getInt(1);
+						System.out.println("New post <" + title + "> ID: " + post_id);						
 					}
 					else	// really should throw an exception here - the new book should have been inserted, but we didn't find it
 					{
-						System.out.println("New book <" + title + "> not found in Books table (ID: " + book_id);
+						System.out.println("New post <" + title + "> not found in Posts table (ID: " + post_id);
 					}
-					
+	//TODO: We only need the rest of this if we do a 3-table setup				
+					/*
 					// now that we have all the information, insert entry into BookAuthors table
 					// which is the junction table for Books and Authors
 					// prepare SQL insert statement to add new TextPost to Books table
@@ -372,8 +381,8 @@ public class DerbyDatabase implements IDatabase {
 					System.out.println("New entry for book ID <" + book_id + "> and author ID <" + author_id + "> inserted into BookAuthors junction table");						
 					
 					System.out.println("New book <" + title + "> inserted into Books table");					
-					
-					return book_id;
+					*/
+					return post_id;
 				} finally {
 					DBUtil.closeQuietly(resultSet1);
 					DBUtil.closeQuietly(stmt1);
@@ -392,7 +401,7 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
-	
+/*	
 	// transaction that deletes TextPost (and possibly its User) from Library
 	@Override
 	public List<User> removeBookByTitle(final String title) {
@@ -543,7 +552,7 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
-	
+	*/
 	// wrapper SQL transaction function that calls actual transaction function (which has retries)
 	public<ResultType> ResultType executeTransaction(Transaction<ResultType> txn) {
 		try {
@@ -603,6 +612,15 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	// retrieves User information from query result set
+		private void loadUser(User user, ResultSet resultSet, int index) throws SQLException {
+			user.setUserId(resultSet.getInt(index++));
+			user.setUsername(resultSet.getString(index++));
+			user.setPassword(resultSet.getString(index++));
+		}
+	
+//TODO Dunno if we need this stuff
+/*
+	// retrieves User information from query result set
 	private void loadAuthor(User author, ResultSet resultSet, int index) throws SQLException {
 		author.setAuthorId(resultSet.getInt(index++));
 		author.setLastname(resultSet.getString(index++));
@@ -623,7 +641,7 @@ public class DerbyDatabase implements IDatabase {
 		bookAuthor.setBookId(resultSet.getInt(index++));
 		bookAuthor.setAuthorId(resultSet.getInt(index++));
 	}
-	
+*/
 	//  creates the Authors and Books tables
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
@@ -684,49 +702,49 @@ public class DerbyDatabase implements IDatabase {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
-				List<User> authorList;
-				List<TextPost> bookList;
-				List<BookAuthor> bookAuthorList;
+				List<User> userList;
+				List<TextPost> postList;
+				//List<BookAuthor> bookAuthorList;
 				
 				try {
-					authorList     = InitialData.getAuthors();
-					bookList       = InitialData.getBooks();
-					bookAuthorList = InitialData.getBookAuthors();					
+					userList     = InitialData.getUsers();
+					postList       = InitialData.getTextPosts();
+					//bookAuthorList = InitialData.getBookAuthors();					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
 
-				PreparedStatement insertAuthor     = null;
-				PreparedStatement insertBook       = null;
-				PreparedStatement insertBookAuthor = null;
+				PreparedStatement insertUser     = null;
+				PreparedStatement insertTextPost       = null;
+				//PreparedStatement insertBookAuthor = null;
 
 				try {
 					// must completely populate Authors table before populating BookAuthors table because of primary keys
-					insertAuthor = conn.prepareStatement("insert into authors (lastname, firstname) values (?, ?)");
-					for (User author : authorList) {
+					insertUser = conn.prepareStatement("insert into users (username, password) values (?, ?)");
+					for (User user : userList) {
 //						insertAuthor.setInt(1, author.getAuthorId());	// auto-generated primary key, don't insert this
-						insertAuthor.setString(1, author.getLastname());
-						insertAuthor.setString(2, author.getFirstname());
-						insertAuthor.addBatch();
+						insertUser.setString(1, user.getUsername());
+						insertUser.setString(2, user.getPassword());
+						insertUser.addBatch();
 					}
-					insertAuthor.executeBatch();
+					insertUser.executeBatch();
 					
-					System.out.println("Authors table populated");
-					
+					System.out.println("Users table populated");
+					//Table setup: post id, user id, title, content
 					// must completely populate Books table before populating BookAuthors table because of primary keys
-					insertBook = conn.prepareStatement("insert into books (title, isbn, published) values (?, ?, ?)");
-					for (TextPost book : bookList) {
-//						insertBook.setInt(1, book.getBookId());		// auto-generated primary key, don't insert this
-//						insertBook.setInt(1, book.getAuthorId());	// this is now in the BookAuthors table
-						insertBook.setString(1, book.getTitle());
-						insertBook.setString(2, book.getIsbn());
-						insertBook.setInt(3, book.getPublished());
-						insertBook.addBatch();
+					insertTextPost = conn.prepareStatement("insert into textPosts (user_id, title, contents) values (?, ?, ?)");
+					for (TextPost post : postList) {
+//						insertTextPost.setInt(1, book.getBookId());		// auto-generated primary key, don't insert this
+//						insertTextPost.setInt(1, book.getAuthorId());	// this is now in the BookAuthors table
+						insertTextPost.setInt(1, post.getUserId());
+						insertTextPost.setString(2, post.getTitle());
+						insertTextPost.setString(3, post.getContents());
+						insertTextPost.addBatch();
 					}
-					insertBook.executeBatch();
+					insertTextPost.executeBatch();
 					
-					System.out.println("Books table populated");					
-					
+					System.out.println("TextPosts table populated");					
+					/*
 					// must wait until all Books and all Authors are inserted into tables before creating BookAuthor table
 					// since this table consists entirely of foreign keys, with constraints applied
 					insertBookAuthor = conn.prepareStatement("insert into bookAuthors (book_id, author_id) values (?, ?)");
@@ -738,12 +756,12 @@ public class DerbyDatabase implements IDatabase {
 					insertBookAuthor.executeBatch();	
 					
 					System.out.println("BookAuthors table populated");					
-					
+					*/
 					return true;
 				} finally {
-					DBUtil.closeQuietly(insertBook);
-					DBUtil.closeQuietly(insertAuthor);
-					DBUtil.closeQuietly(insertBookAuthor);					
+					DBUtil.closeQuietly(insertTextPost);
+					DBUtil.closeQuietly(insertUser);
+					//DBUtil.closeQuietly(insertBookAuthor);					
 				}
 			}
 		});
