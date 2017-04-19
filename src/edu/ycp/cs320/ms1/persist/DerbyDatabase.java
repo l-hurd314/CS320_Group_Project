@@ -653,7 +653,7 @@ public class DerbyDatabase implements IDatabase {
 			
 				try {
 					stmt1 = conn.prepareStatement(
-						"create table authors (" +
+						"create table users (" +
 						"	author_id integer primary key " +
 						"		generated always as identity (start with 1, increment by 1), " +									
 						"	lastname varchar(40)," +
@@ -662,10 +662,10 @@ public class DerbyDatabase implements IDatabase {
 					);	
 					stmt1.executeUpdate();
 					
-					System.out.println("Authors table created");
+					System.out.println("Users table created");
 					
 					stmt2 = conn.prepareStatement(
-							"create table books (" +
+							"create table textposts (" +
 							"	book_id integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
 //							"	author_id integer constraint author_id references authors, " +
@@ -676,8 +676,9 @@ public class DerbyDatabase implements IDatabase {
 					);
 					stmt2.executeUpdate();
 					
-					System.out.println("Books table created");					
+					System.out.println("TextPosts table created");					
 					
+/*
 					stmt3 = conn.prepareStatement(
 							"create table bookAuthors (" +
 							"	book_id   integer constraint book_id references books, " +
@@ -687,7 +688,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt3.executeUpdate();
 					
 					System.out.println("BookAuthors table created");					
-										
+*/				
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
