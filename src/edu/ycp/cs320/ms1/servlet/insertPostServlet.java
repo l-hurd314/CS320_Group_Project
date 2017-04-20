@@ -1,6 +1,7 @@
 package edu.ycp.cs320.ms1.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.ms1.controller.InsertPostController;
+import edu.ycp.cs320.ms1.model.TextPost;
+import edu.ycp.cs320.ms1.model.User;
 
 public class insertPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +21,7 @@ public class insertPostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		System.out.println("\nInsertBookServlet: doGet");
+		System.out.println("\ninsertPostServlet: doGet");
 
 		String user = (String) req.getSession().getAttribute("user");
 		if (user == null) {
@@ -34,21 +37,20 @@ public class insertPostServlet extends HttpServlet {
 		
 		System.out.println("   User: <" + user + "> logged in");
 
-		req.getRequestDispatcher("/_view/insertBook.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/UserHome.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		System.out.println("\nInsertBookServlet: doPost");		
+		System.out.println("\ninsertPostServlet: doPost");		
 		
 		String errorMessage   = null;
 		String successMessage = null;
 		String firstName      = null;
 		String lastName       = null;
 		String title		  = null;
-		String isbn			  = null;
 		String strPublished   = null;
 		
 		String username = null;
@@ -59,8 +61,7 @@ public class insertPostServlet extends HttpServlet {
 		// Decode form parameters and dispatch to controller
 		firstName    = req.getParameter("author_firstname");
 		lastName     = req.getParameter("author_lastname");
-		title        = req.getParameter("book_title");
-		isbn         = req.getParameter("book_isbn");
+		title        = req.getParameter("post_title");
 		
 //I don't know what this does, Work on it later
 		username        = req.getParameter("username");
@@ -71,7 +72,6 @@ public class insertPostServlet extends HttpServlet {
 		if (firstName    == null || firstName.equals("") ||
 			lastName     == null || lastName.equals("")  ||
 			title        == null || title.equals("")     ||
-			isbn         == null || isbn.equals("")	     ||
 			strPublished == null) {
 			
 			errorMessage = "Please fill in all of the required fields";
@@ -86,15 +86,14 @@ public class insertPostServlet extends HttpServlet {
 				successMessage = title;
 			}
 			else {
-				errorMessage = "Failed to insert Book: " + title;					
+				errorMessage = "Failed to insert Post: " + title;					
 			}
 		}
 		
 		// Add parameters as request attributes
 		req.setAttribute("author_firstname", firstName);
 		req.setAttribute("author_lastname",  lastName);
-		req.setAttribute("book_title",       title);
-		req.setAttribute("book_isbn",        isbn);
+		req.setAttribute("post_title",       title);
 		req.setAttribute("book_published",   published);
 		
 		// Add result objects as request attributes
@@ -102,6 +101,6 @@ public class insertPostServlet extends HttpServlet {
 		req.setAttribute("successMessage", successMessage);
 		
 		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/insertBook.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/UserHome.jsp").forward(req, resp);
 	}	
 }

@@ -1,12 +1,17 @@
 package edu.ycp.cs320.ms1.model;
 
+import java.util.List;
+import java.util.ArrayList;
+
+
 public class User {
 	private int userId;
 	private String username;
 	private String password;
+	private List<TextPost> posts;
 	
 	public User() {
-		
+		this.posts = new ArrayList<TextPost>();
 	}
 	
 	public User(String username, String password) {
@@ -36,6 +41,10 @@ public class User {
 	
 	public String getPassword() {
 		return password;
+	}
+	
+	public List<TextPost> getPostList(){
+		return this.posts;
 	}
 	
 }

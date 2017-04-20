@@ -33,7 +33,7 @@
 			 <form action="${pageContext.servletContext.contextPath}/NewPost" method="get">
 				<input name="NewPost" type="Submit" value="New Post" class="NewPost" class="NewPost:hover">
 			</form>
-						
+									
 		</div>
 	</body>
 </html>

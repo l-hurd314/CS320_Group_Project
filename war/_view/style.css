@@ -205,3 +205,42 @@ a:active {
 	font-family: "Comic Sans MS", cursive, sans-serif;
 	font-weight: bold;
 }
+
+input.text_box {
+	vertical-align: text-top;
+	background-color: white;
+	height: 500px;
+	width: 500px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+input.text_box:hover {
+    background-color: #9ec2ff;
+    color: white;
+}
+
+input.title_text_box {
+	background-color: white;
+	height: 25px;
+	width: 200px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+input.title_text_box:hover {
+    background-color: #9ec2ff;
+    color: white;
+}

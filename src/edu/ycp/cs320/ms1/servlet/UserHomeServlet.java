@@ -36,7 +36,6 @@ public class UserHomeServlet extends HttpServlet {
 			if(req.getParameter("New Post") != null){
 				resp.sendRedirect(req.getContextPath() + "/NewPost");
 			}
-			
-		
+
 		}
 }

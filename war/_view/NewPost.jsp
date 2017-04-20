@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 	<head>
@@ -28,27 +30,29 @@
 				      <option value="video">Video</option>
 			</select>
 			
-			<c:if test="${! empty errorMessage}">
-				<div class="error">${errorMessage}</div>
-			</c:if>
-			
-			<c:if test="${! empty successMessage}">
-				<div class="success">Successfully added ${successMessage} to Library</div>
-			</c:if>
-			
-			<form action="${pageContext.servletContext.contextPath}/insertPost" method="post">
-				<table>
-					<tr>
-						<td class="label">Title:</td>
-						<td><input type="text" name="title" size="20" value="${title}" class="NewPost" class="NewPost:hover"></td>
-					</tr>
-					<tr>
-						<td class="label">Text:</td>
-						<td><input type="text" name="textt" size="20" value="${title}" class="NewPost" class="NewPost:hover"></td>
-					</tr>
-				</table>
-			</form>
-
+			<div>	
+				<c:if test="${! empty errorMessage}">
+					<div class="error">${errorMessage}</div>
+				</c:if>
+				
+				<c:if test="${! empty successMessage}">
+					<div class="success">Successfully added ${successMessage} to Library</div>
+				</c:if>
+				
+				<form action="${pageContext.servletContext.contextPath}/UserHome" method="post">
+					<table>
+						<tr>
+							<td class="label">Title:</td>
+							<td><input type="text" name="title" size="20" value="${title}" class="title_text_box" class="title_text_box:hover"></td>
+						</tr>
+						<tr>
+							<td class="label">Text:</td>
+							<td><input type="text" name="text" size="20" value="${text}" class="text_box" class="text_box:hover"></td>
+						</tr>	
+					</table>
+					<input type="Submit" name="login" value="Submit" class="login_page_button" class="login_page_button:hover">
+				</form>
+			</div>		
 		</div>
 	</body>
 </html>

@@ -29,8 +29,8 @@ public class NewPostServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
 			
-			if(req.getAttribute("text") != null){
-				resp.sendRedirect(req.getContextPath() + "/Post");
+			if(req.getAttribute("text") != null && req.getAttribute("title") != null){
+				resp.sendRedirect(req.getContextPath() + "/UserHome");
 			}
 			
 		
