@@ -76,6 +76,26 @@ input.signup {
     cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
 }
 
+input.NewPost {
+	width: 100px;
+	height: 30px;
+	background-color: white;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    float: left;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
+}
+
+input.NewPost:hover {
+    background-color: #9ec2ff;
+    color: white;
+}
+
 input.login:hover {
     background-color: #9ec2ff;
     color: white;
@@ -153,3 +173,22 @@ a:active {
 .cursor {
    cursor: url("http://cursors1.totallyfreecursors.com/thumbnails/dragonflyblue.gif"), auto;
 }
+
+.dropbtn {
+    background-color: white;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	text-align: center;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+	width: 175px;
+	cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
+}
+
+.dropbtn:hover {
+    background-color: #9ec2ff;
+    color: white;

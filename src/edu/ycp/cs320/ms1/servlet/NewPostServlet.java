@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UserHomeServlet extends HttpServlet {
+public class NewPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	
@@ -21,8 +21,8 @@ public class UserHomeServlet extends HttpServlet {
 		else{
 			req.getSession().setAttribute("username", "guest");
 		}
-				
-		req.getRequestDispatcher("/_view/UserHome.jsp").forward(req, resp);
+		
+		req.getRequestDispatcher("/_view/NewPost.jsp").forward(req, resp);
 		
 		
 	}
@@ -31,10 +31,6 @@ public class UserHomeServlet extends HttpServlet {
 			
 			if(req.getParameter("Post") != null){
 				resp.sendRedirect(req.getContextPath() + "/Post");
-			}
-			
-			if(req.getParameter("New Post") != null){
-				resp.sendRedirect(req.getContextPath() + "/NewPost");
 			}
 			
 		

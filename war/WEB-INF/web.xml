@@ -38,6 +38,10 @@
     <servlet-name>PostServlet</servlet-name>
     <servlet-class>edu.ycp.cs320.ms1.servlet.PostServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>NewPostServlet</servlet-name>
+    <servlet-class>edu.ycp.cs320.ms1.servlet.NewPostServlet</servlet-class>
+  </servlet>
   
   <!-- AJAX servlets. -->
   <servlet>
@@ -93,6 +97,10 @@
   <servlet-mapping>
     <servlet-name>PostServlet</servlet-name>
     <url-pattern>/Post</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewPostServlet</servlet-name>
+    <url-pattern>/NewPost</url-pattern>
   </servlet-mapping>
   
   <!--  AJAX servlet mappings. -->
