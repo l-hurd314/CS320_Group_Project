@@ -326,7 +326,7 @@ public class DerbyDatabase implements IDatabase {
 					// prepare SQL insert statement to add new TextPost to Books table
 					//Table setup: post id, user id, title, content
 					stmt4 = conn.prepareStatement(
-							"insert into textPosts (user_id, title, content) " +
+							"insert into textPosts (user_id, title, contents) " +
 							"  values(?, ?, ?) "
 					);
 					stmt4.setString(2, title);
@@ -343,7 +343,7 @@ public class DerbyDatabase implements IDatabase {
 					// prepare SQL statement to retrieve book_id for new TextPost
 					stmt5 = conn.prepareStatement(
 							"select post_id from textPosts " +
-							"  where title = ? and user_id = ? and content = ? "
+							"  where title = ? and user_id = ? and contents = ? "
 									
 					);
 					stmt5.setString(1, title);
@@ -669,6 +669,7 @@ public class DerbyDatabase implements IDatabase {
 							"	post_id integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
 //							"	author_id integer constraint author_id references authors, " +
+							"	user_id integer, " +
 							"	title varchar(70)," +
 							"	contents varchar(70)" +
 							//" ,  published integer" +

@@ -21,7 +21,7 @@ public class InsertNewPostByUser {
 		String title = keyboard.nextLine();
 		
 		System.out.print("Enter the post's content: ");
-		String content = keyboard.nextLine();
+		String contents = keyboard.nextLine();
 		
 		/*System.out.print("Enter the book's ISBN: ");
 		String isbn = keyboard.nextLine();
@@ -32,8 +32,8 @@ public class InsertNewPostByUser {
 		
 		// get the DB instance and execute the transaction
 		IDatabase db = DatabaseProvider.getInstance();
-		Integer post_id = db.insertPostIntoPostsTable(title, userName, content);
-		//Table setup: post id, user id, title, content
+		Integer post_id = db.insertPostIntoPostsTable(title, userName, contents);
+		//Table setup: post id, user id, title, contents
 
 		//TEST PURPOSES ONLY
 		// check if the insertion succeeded

@@ -1,0 +1,298 @@
+// Matt Ritchie
+
+
+Exception in thread "main" edu.ycp.cs320.ms1.persist.PersistenceException: Transaction failed
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:561)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.findAllUsers(DerbyDatabase.java:190)
+	at edu.ycp.cs320.ms1.differentQueries.AllUsersQuery.main(AllUsersQuery.java:20)
+	
+	
+Caused by: java.sql.SQLSyntaxErrorException: Column 'USERNAME' is either not in any table in the FROM list or appears 
+within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the 
+GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'USERNAME' is not a column in the target table.
+	
+	
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$1.execute(DerbyDatabase.java:197)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$1.execute(DerbyDatabase.java:1)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.doExecuteTransaction(DerbyDatabase.java:576)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:559)
+	... 2 more
+Caused by: java.sql.SQLException: Column 'USERNAME' is either not in any table in the FROM list or appears within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'USERNAME' is not a column in the target table.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 20 more
+Caused by: ERROR 42X04: Column 'USERNAME' is either not in any table in the FROM list or appears within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'USERNAME' is not a column in the target table.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ColumnReference.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumn.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumnList.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.SelectNode.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(Unknown Source)
+	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 14 more
+
+	//------------------------------------------------------------------------------------------------------------------------
+	
+	Exception in thread "main" edu.ycp.cs320.ms1.persist.PersistenceException: Transaction failed
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:561)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.insertPostIntoPostsTable(DerbyDatabase.java:239)
+	at edu.ycp.cs320.ms1.differentQueries.InsertNewPostByUser.main(InsertNewPostByUser.java:35)
+	
+	
+	
+Caused by: java.sql.SQLSyntaxErrorException: Column 'USER_ID' is either not in any table in the FROM list or appears within a join 
+specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If 
+this is a CREATE or ALTER TABLE  statement then 'USER_ID' is not a column in the target table.
+
+
+
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$2.execute(DerbyDatabase.java:263)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$2.execute(DerbyDatabase.java:1)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.doExecuteTransaction(DerbyDatabase.java:576)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:559)
+	... 2 more
+Caused by: java.sql.SQLException: Column 'USER_ID' is either not in any table in the FROM list or appears within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'USER_ID' is not a column in the target table.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 20 more
+Caused by: ERROR 42X04: Column 'USER_ID' is either not in any table in the FROM list or appears within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'USER_ID' is not a column in the target table.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ColumnReference.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumn.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumnList.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.SelectNode.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(Unknown Source)
+	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 14 more
+	
+	//---------------------------------------------------------------------------------------------------------
+	
+	Exception in thread "main" edu.ycp.cs320.ms1.persist.PersistenceException: Transaction failed
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:561)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.createTables(DerbyDatabase.java:647)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.main(DerbyDatabase.java:775)
+	
+Caused by: java.sql.SQLSyntaxErrorException: Syntax error: Encountered ")" at line 1, column 183.
+
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$3.execute(DerbyDatabase.java:667)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$3.execute(DerbyDatabase.java:1)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.doExecuteTransaction(DerbyDatabase.java:576)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:559)
+	... 2 more
+	
+	//--------------------------------------------------------------------------------------------------------------
+	
+	Creating tables...
+Users table created
+TextPosts table created
+Loading initial data...
+Users table populated
+Exception in thread "main" edu.ycp.cs320.ms1.persist.PersistenceException: Transaction failed
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:561)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.loadInitialData(DerbyDatabase.java:703)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.main(DerbyDatabase.java:778)
+Caused by: java.sql.SQLSyntaxErrorException: 'USER_ID' is not a column in table or VTI 'APP.TEXTPOSTS'.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$4.execute(DerbyDatabase.java:736)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$4.execute(DerbyDatabase.java:1)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.doExecuteTransaction(DerbyDatabase.java:576)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:559)
+	... 2 more
+Caused by: java.sql.SQLException: 'USER_ID' is not a column in table or VTI 'APP.TEXTPOSTS'.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 20 more
+Caused by: ERROR 42X14: 'USER_ID' is not a column in table or VTI 'APP.TEXTPOSTS'.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumn.bindResultColumnByName(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumnList.bindResultColumnsByName(Unknown Source)
+	at org.apache.derby.impl.sql.compile.InsertNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 14 more
+	
+	//----------------------------------------------------------------------------------------------------------------------
+	
+	Which database (0=fake, 1=derby): 1
+Enter the author's username: Test
+Enter the post's title: hello
+Enter the post's content: blah blah blah
+User <Test> found with ID: 1
+Exception in thread "main" edu.ycp.cs320.ms1.persist.PersistenceException: Transaction failed
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:561)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.insertPostIntoPostsTable(DerbyDatabase.java:239)
+	at edu.ycp.cs320.ms1.differentQueries.InsertNewPostByUser.main(InsertNewPostByUser.java:35)
+Caused by: java.sql.SQLSyntaxErrorException: 'USER_ID' is not a column in table or VTI 'APP.TEXTPOSTS'.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$2.execute(DerbyDatabase.java:328)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$2.execute(DerbyDatabase.java:1)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.doExecuteTransaction(DerbyDatabase.java:576)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:559)
+	... 2 more
+Caused by: java.sql.SQLException: 'USER_ID' is not a column in table or VTI 'APP.TEXTPOSTS'.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 20 more
+Caused by: ERROR 42X14: 'USER_ID' is not a column in table or VTI 'APP.TEXTPOSTS'.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumn.bindResultColumnByName(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ResultColumnList.bindResultColumnsByName(Unknown Source)
+	at org.apache.derby.impl.sql.compile.InsertNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 14 more
+	
+	//=-------------------------------------------------------------------------------------------------------------------
+	
+	Which database (0=fake, 1=derby): 1
+Enter the author's username: Test
+Enter the post's title: Hello World
+Enter the post's content: its 1am you better work this time
+ERROR: user should always be in users list before being allowed to post.
+You should not be seeing this.
+User <Test> not found
+New user <Test> inserted in Users table
+New user <Test> ID: 3
+New post <Hello World> inserted into Posts table
+Exception in thread "main" edu.ycp.cs320.ms1.persist.PersistenceException: Transaction failed
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:561)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.insertPostIntoPostsTable(DerbyDatabase.java:239)
+	at edu.ycp.cs320.ms1.differentQueries.InsertNewPostByUser.main(InsertNewPostByUser.java:35)
+	
+Caused by: java.sql.SQLSyntaxErrorException: Column 'CONTENT' is either not in any table in the FROM list or appears within a 
+join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. 
+If this is a CREATE or ALTER TABLE  statement then 'CONTENT' is not a column in the target table.
+
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(Unknown Source)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$2.execute(DerbyDatabase.java:344)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase$2.execute(DerbyDatabase.java:1)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.doExecuteTransaction(DerbyDatabase.java:576)
+	at edu.ycp.cs320.ms1.persist.DerbyDatabase.executeTransaction(DerbyDatabase.java:559)
+	... 2 more
+Caused by: java.sql.SQLException: Column 'CONTENT' is either not in any table in the FROM list or appears within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'CONTENT' is not a column in the target table.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 20 more
+Caused by: ERROR 42X04: Column 'CONTENT' is either not in any table in the FROM list or appears within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'CONTENT' is not a column in the target table.
+	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
+	at org.apache.derby.impl.sql.compile.ColumnReference.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.BinaryOperatorNode.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.BinaryComparisonOperatorNode.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.BinaryOperatorNode.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.BinaryLogicalOperatorNode.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.AndNode.bindExpression(Unknown Source)
+	at org.apache.derby.impl.sql.compile.SelectNode.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindExpressions(Unknown Source)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(Unknown Source)
+	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
+	... 14 more
+	
+	//---------------------------------------------------------------------------------------------------------------------------------------
+	
+Which database (0=fake, 1=derby): 1
+Enter the author's username: Test
+Enter the post's title: please work
+Enter the post's content: please?
+ERROR: user should always be in users list before being allowed to post.
+You should not be seeing this.
+User <Test> not found
+New user <Test> inserted in Users table
+New user <Test> ID: 3
+New post <please work> inserted into Posts table
+New post <please work> ID: 2
+New post (ID: 2) successfully added to Posts table: <please work>
+	
