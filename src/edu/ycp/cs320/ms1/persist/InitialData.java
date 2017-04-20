@@ -58,4 +58,29 @@ public class InitialData {
 			readPosts.close();
 		}
 	}
+	
+	public static void main(){
+		try{
+			System.out.println(getUsers());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("I died.");
+			e.printStackTrace();
+		}
+		finally{
+			System.out.println("Did I work?");
+		}
+		
+		try{
+			System.out.println(getTextPosts());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("I died.");
+			e.printStackTrace();
+		}
+		finally{
+			System.out.println("Did I work?");
+		}
+		
+	}
 }

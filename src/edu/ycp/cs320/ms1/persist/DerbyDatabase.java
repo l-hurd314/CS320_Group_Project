@@ -195,8 +195,8 @@ public class DerbyDatabase implements IDatabase {
 				
 				try {
 					stmt = conn.prepareStatement(
-							"select * from users " +
-							" order by username asc"
+							"select * from USERS " 
+						  //+ " order by username asc"
 					);
 					
 					List<User> result = new ArrayList<User>();
@@ -296,12 +296,12 @@ public class DerbyDatabase implements IDatabase {
 							// execute the update
 							stmt2.executeUpdate();
 							
-							System.out.println("New author <" + userName + "> inserted in Users table");						
+							System.out.println("New user <" + userName + "> inserted in Users table");						
 						
 							// try to retrieve author_id for new User - DB auto-generates author_id
 							stmt3 = conn.prepareStatement(
-									"select user_id from users " +
-									"  where userName = ?"
+									"select user_id from USERS " +
+									"  where username = ?"
 							);
 							stmt3.setString(1, userName);
 							//stmt3.setString(2, firstName);
@@ -313,7 +313,7 @@ public class DerbyDatabase implements IDatabase {
 							if (resultSet3.next())
 							{
 								user_id = resultSet3.getInt(1);
-								System.out.println("New author <" + userName + "> ID: " + user_id);						
+								System.out.println("New user <" + userName + "> ID: " + user_id);						
 							}
 							else	// really should throw an exception here - the new author should have been inserted, but we didn't find them
 							{
@@ -654,10 +654,10 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					stmt1 = conn.prepareStatement(
 						"create table users (" +
-						"	author_id integer primary key " +
+						"	user_id integer primary key " +
 						"		generated always as identity (start with 1, increment by 1), " +									
-						"	lastname varchar(40)," +
-						"	firstname varchar(40)" +
+						"	username varchar(40)," +
+						"	password varchar(40)" +
 						")"
 					);	
 					stmt1.executeUpdate();
@@ -666,12 +666,12 @@ public class DerbyDatabase implements IDatabase {
 					
 					stmt2 = conn.prepareStatement(
 							"create table textposts (" +
-							"	book_id integer primary key " +
+							"	post_id integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
 //							"	author_id integer constraint author_id references authors, " +
 							"	title varchar(70)," +
-							"	isbn varchar(15)," +
-							"   published integer" +
+							"	contents varchar(70)" +
+							//" ,  published integer" +
 							")"
 					);
 					stmt2.executeUpdate();

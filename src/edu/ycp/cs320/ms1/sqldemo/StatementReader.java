@@ -1,5 +1,6 @@
 package edu.ycp.cs320.ms1.sqldemo;
-
+//copied from cs320 library example resource as a debugging tool,
+//but not intended for use in product
 import java.io.IOException;
 import java.io.Reader;
 

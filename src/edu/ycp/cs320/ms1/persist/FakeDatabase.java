@@ -109,4 +109,16 @@ public class FakeDatabase implements IDatabase{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Integer insertPostIntoPostsTable(String title, String username, String content) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
