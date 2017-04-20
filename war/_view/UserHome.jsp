@@ -10,7 +10,7 @@
 	<body>
 		<div class="cursor">
 			<div id="background">
-	    		<img src="http://www.wallcoo.net/flower/SZ_186_CG_Digital_Flowers/images/HS066_350AA.jpg" class="stretch" alt="" />
+	    		<img src="https://images.freecreatives.com/wp-content/uploads/2016/05/Awesome-Gradient-Background-.jpg" class="stretch" alt="" />
 			</div>
 			
 			<div class="header"> 
