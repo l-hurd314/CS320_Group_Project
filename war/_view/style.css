@@ -9,6 +9,7 @@ body {
     left: 0px; 
     top: 0px; 
     z-index: -1;
+    opacity: 0.9;
 }
 
 .stretch {
@@ -29,12 +30,12 @@ body {
 	font-size: 300%;
 	font-weight: bold;
 	font-variant: small-caps; 
-	color: #7fb0ff;
+	color: #4a89ef;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .main_bar{
-	background-color: #66a0ff;
+	background-color: #4a89ef;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
@@ -57,7 +58,7 @@ input.login {
     margin-bottom: 10px;
     float: right;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
+    cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
 }
 
 input.signup {
@@ -72,7 +73,7 @@ input.signup {
     margin-bottom: 10px;
     float: left;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
+    cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
 }
 
 input.login:hover {
@@ -97,7 +98,7 @@ input.login_page_button{
     margin-bottom: 10px;
     float: left;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
+    cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
 }
 
 input.login_page_button:hover {
@@ -131,17 +132,17 @@ input.login_page:hover {
 
 /* unvisited link */
 a:link {
-    color: #727bff;
+    color: #4a89ef;
 }
 
 /* visited link */
 a:visited {
-    color: #ba82f2;
+    color: #8346bf;
 }
 
 /* mouse over link */
 a:hover {
-    color: #66a0ff;
+    color: #b72885;
 }
 
 /* selected link */
@@ -150,5 +151,5 @@ a:active {
 }
 
 .cursor {
-   cursor: url(http://i.imgur.com/CUjJQap.gif), auto;
+   cursor: url("http://cursors1.totallyfreecursors.com/thumbnails/dragonflyblue.gif"), auto;
 }
