@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class NewPostServlet extends HttpServlet {
+public class insertPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	
@@ -22,15 +22,17 @@ public class NewPostServlet extends HttpServlet {
 			req.getSession().setAttribute("username", "guest");
 		}
 		
-		req.getRequestDispatcher("/_view/NewPost.jsp").forward(req, resp);
+		
+		
+		req.getRequestDispatcher("/_view/Post.jsp").forward(req, resp);
 		
 		
 	}
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
 			
-			if(req.getAttribute("text") != null){
-				resp.sendRedirect(req.getContextPath() + "/Post");
+			if(req.getParameter("Post") != null){
+				resp.sendRedirect(req.getContextPath() + "/addNumbers");
 			}
 			
 		

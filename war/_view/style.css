@@ -192,3 +192,16 @@ a:active {
 .dropbtn:hover {
     background-color: #9ec2ff;
     color: white;
+}
+
+.error{
+	color: red;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-weight: bold;
+}
+
+.success{
+	color: blue;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-weight: bold;
+}
