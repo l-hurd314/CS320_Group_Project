@@ -22,13 +22,16 @@
 		    </div> 
 			
 			<div class="postList">
-				<p>What is the answer to the ultimate question of life, the universe, and everything?</p>
+			<p>${post.title }</p>
+			<p>${post.contents }</p>			
+			
+				<!--   <p>What is the answer to the ultimate question of life, the universe, and everything?</p>
 			
 				<ul style="list-style-type:circle">
 		  			<li>It's 42.</li>
 		  			<li>Are you sure?</li>
 		  			<li>Just ask any CS student or CS Professor.</li>
-				</ul>
+				</ul>-->
 			</div>
 		</div>
 	</body>

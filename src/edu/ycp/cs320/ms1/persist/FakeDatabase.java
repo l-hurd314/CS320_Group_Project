@@ -121,4 +121,16 @@ public class FakeDatabase implements IDatabase{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<TextPost> findAllTextPosts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TextPost findTextPostByTitle(String title) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

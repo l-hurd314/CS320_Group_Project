@@ -24,11 +24,15 @@ public interface IDatabase {
 	 * @param contents
 	 * @param title
 	 */
-	public void addTextPost(String username, String contents, String title);
+	void addTextPost(String username, String contents, String title);
 	//public List<Pair<User, TextPost>> findUserAndTextPostByUsername(username);
 
 	Integer insertPostIntoPostsTable(String title, String username, String content);
 	//Table setup: post id, user id, title, content
 
 	public List<User> findAllUsers();
+	
+	public List<TextPost> findAllTextPosts();
+	
+	public TextPost findTextPostByTitle(String title);
 }

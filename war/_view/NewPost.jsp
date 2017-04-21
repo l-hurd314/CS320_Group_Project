@@ -39,7 +39,7 @@
 					<div class="success">Successfully added ${successMessage} to Library</div>
 				</c:if>
 				
-				<form action="${pageContext.servletContext.contextPath}/UserHome" method="post">
+				<form action="${pageContext.servletContext.contextPath}/NewPost" method="post">
 					<table>
 						<tr>
 							<td class="label">Title:</td>
@@ -50,7 +50,7 @@
 							<td><input type="text" name="text" size="20" value="${text}" class="text_box" class="text_box:hover"></td>
 						</tr>	
 					</table>
-					<input type="Submit" name="login" value="Submit" class="login_page_button" class="login_page_button:hover">
+					<input type="Submit" name="login" value="Submit" class="login_page_button login_page_button:hover">
 				</form>
 			</div>		
 		</div>

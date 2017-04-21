@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import edu.ycp.cs320.ms1.controller.InsertPostController;
 
 public class NewPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,10 +30,13 @@ public class NewPostServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
 			
-			if(req.getAttribute("text") != null && req.getAttribute("title") != null){
+			if(req.getParameter("text") != null && req.getParameter("title") != null){
+				InsertPostController ipc = new InsertPostController();
+				ipc.insertPostIntoPostsTable(req.getParameter("title"), username, req.getParameter("text"));
 				resp.sendRedirect(req.getContextPath() + "/UserHome");
+				
 			}
 			
-		
+			
 		}
 }

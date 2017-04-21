@@ -800,5 +800,48 @@ public class DerbyDatabase implements IDatabase {
 	public void addTextPost(String username, String contents, String title) {
 		// TODO Auto-generated method stub
 		
+		
+	}
+
+
+	@Override
+	public List<TextPost> findAllTextPosts() {
+		// TODO Auto-generated method stub
+		
+		return executeTransaction(new Transaction<List<TextPost>>() {
+			@Override
+			public List<TextPost> execute(Connection conn) throws SQLException {
+				
+				//List<BookAuthor> bookAuthorList;
+				List<TextPost> postList = new ArrayList<TextPost>();
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet;
+				//PreparedStatement insertBookAuthor = null;
+
+				try {
+					stmt1 = conn.prepareStatement(
+						"select * from textPosts"
+					);
+					resultSet = stmt1.executeQuery();
+					while(resultSet.next()){
+						
+						postList.add(new TextPost(resultSet.getInt(2), resultSet.getString(3), resultSet.getString(4)));
+					}
+					return postList;
+				} finally {
+					
+					DBUtil.closeQuietly(stmt1);
+					//DBUtil.closeQuietly(insertBookAuthor);					
+				}
+			}
+		});
+		//return postList;
+	}
+
+
+	@Override
+	public TextPost findTextPostByTitle(String title) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

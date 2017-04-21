@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 	<head>
@@ -19,16 +20,23 @@
 		    
 		    <div class="main_bar"> 
 				Welcome Home! 
+		    </div>
+		    <div class="postList">
+		    	<c:forEach items="${allPosts}" var="item" varStatus="i">
+					<li>${item.title }</li>
+				</c:forEach>
 		    </div> 
-			
+			<!-- 
 			<div class="postList">
 				<ul style="list-style-type:none">
-		  			<li>A Day in the Life</li>
-		 			<li>Don't You Worry Your Pretty Little Mind</li>
-		  				<a href="${pageContext.servletContext.contextPath}/Post" target="_blank" class="postList">
-							"It is a mistake to think you can solve any major problems just with potatoes."</a>
+		  			<a href="${pageContext.servletContext.contextPath}/Post" target="_blank" class="postList">
+						"It is a mistake to think you can solve any major problems just with potatoes."</a>
+						<c:forEach items="${allPosts}" var="item" varStatus="i">
+							<li>${item.title }</li>
+						</c:forEach>
 				</ul>
 			</div>
+			 -->
 			
 			 <form action="${pageContext.servletContext.contextPath}/NewPost" method="get">
 				<input name="NewPost" type="Submit" value="New Post" class="NewPost" class="NewPost:hover">

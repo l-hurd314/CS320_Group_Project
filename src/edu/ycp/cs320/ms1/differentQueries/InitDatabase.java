@@ -6,6 +6,7 @@ import java.util.Scanner;
 import edu.ycp.cs320.ms1.persist.DatabaseProvider;
 import edu.ycp.cs320.ms1.persist.FakeDatabase;
 import edu.ycp.cs320.ms1.persist.DerbyDatabase;
+import edu.ycp.cs320.ms1.persist.IDatabase;
 
 public class InitDatabase {
 	public static void init(Scanner keyboard) {
