@@ -30,5 +30,5 @@ public interface IDatabase {
 	Integer insertPostIntoPostsTable(String title, String username, String content);
 	//Table setup: post id, user id, title, content
 
-	List<User> findAllUsers();
+	public List<User> findAllUsers();
 }
