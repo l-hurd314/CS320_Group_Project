@@ -184,6 +184,72 @@ public class DerbyDatabase implements IDatabase {
 	}	
 	*/
 	
+	// transaction that inspects creds in Library
+		@Override
+		public int isGoodCreds(String username, String password) {
+			return executeTransaction(new Transaction<Integer>() {
+				@Override
+				public Integer execute(Connection conn) throws SQLException {
+					PreparedStatement stmt = null;
+					ResultSet resultSet = null;
+					
+					try {
+						stmt = conn.prepareStatement(
+								"select * from USERS " 
+							  + "where users.username = ?"
+						);
+						
+						stmt.setString(1, username);
+						
+						List<String> resultlist = new ArrayList<String>();
+						//result.get(0).intValue();
+						resultSet = stmt.executeQuery();
+						
+						// for testing that a result was returned
+						Boolean found = false;
+						
+						while (resultSet.next()) {
+							found = true;
+							
+							User user = new User();
+							loadUser(user, resultSet, 1);
+							
+							//System.out.println(user.getPassword());
+							resultlist.add(user.getPassword());
+						}
+						
+						int result;
+						
+						// check if any users were found
+						if (!found) {
+							result = -1;
+							//System.out.println("No users were found in the database (derby)");
+						}
+						
+				//check and return actual result
+						//System.out.println(resultlist.get(0));
+						//System.out.println(resultlist.get(1));
+						else if(resultlist.size()>1){
+							result = 2;
+						}
+						else {
+							if(resultlist.get(0).equals(password)){
+								result = 1;
+							}
+							else {
+								result = 0;
+							}
+						}
+						
+						return result;
+					} finally {
+						DBUtil.closeQuietly(resultSet);
+						DBUtil.closeQuietly(stmt);
+					}
+				}
+			});
+		}
+	
 	// transaction that retrieves all Authors in Library
 	@Override
 	public List<User> findAllUsers() {

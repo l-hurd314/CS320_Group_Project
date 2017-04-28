@@ -35,4 +35,6 @@ public interface IDatabase {
 	public List<TextPost> findAllTextPosts();
 	
 	public TextPost findTextPostByTitle(String title);
+
+	public int isGoodCreds(String username, String password);
 }
