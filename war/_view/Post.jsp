@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 	<head>
@@ -18,20 +19,12 @@
 		    </div>   
 		    
 		    <div class="main_bar"> 
-				${item.title} 
+				${post.title} 
 		    </div> 
 			
 			<div class="postList">
-			<p>${post.title }</p>
-			<p>${post.contents }</p>			
-			
-				<!--   <p>What is the answer to the ultimate question of life, the universe, and everything?</p>
-			
-				<ul style="list-style-type:circle">
-		  			<li>It's 42.</li>
-		  			<li>Are you sure?</li>
-		  			<li>Just ask any CS student or CS Professor.</li>
-				</ul>-->
+				<p><c:forEach items="${allPosts}" var="item" varStatus="i">
+					${item.contents }</c:forEach></p>			
 			</div>
 		</div>
 	</body>
