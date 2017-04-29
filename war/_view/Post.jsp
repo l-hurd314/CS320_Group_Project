@@ -18,7 +18,7 @@
 		    </div>   
 		    
 		    <div class="main_bar"> 
-				Text Document 
+				${item.title} 
 		    </div> 
 			
 			<div class="postList">

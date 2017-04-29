@@ -23,7 +23,7 @@
 		    </div>
 		    <div class="postList">
 		    	<c:forEach items="${allPosts}" var="item" varStatus="i">
-					<li>${item.title }</li>
+					<li><a href="${pageContext.servletContext.contextPath}/Post">${item.title }</a></li>
 				</c:forEach>
 		    </div> 
 			<!-- 
