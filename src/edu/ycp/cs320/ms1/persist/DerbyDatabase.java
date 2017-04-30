@@ -869,8 +869,6 @@ public class DerbyDatabase implements IDatabase {
 		
 	}
 
-
-	@Override
 	public List<TextPost> findAllTextPosts() {
 		// TODO Auto-generated method stub
 		
@@ -898,6 +896,101 @@ public class DerbyDatabase implements IDatabase {
 					
 					DBUtil.closeQuietly(stmt1);
 					//DBUtil.closeQuietly(insertBookAuthor);					
+				}
+			}
+		});
+		//return postList;
+	}
+
+	@Override
+	public List<TextPost> findMyTextPosts(String username) {
+		/**
+		 * Version 2.0 located in find_by_user_class.txt on Matt's laptop.
+		 * Implemented as findMyTextPosts(User user) below;
+		 */
+		
+		return executeTransaction(new Transaction<List<TextPost>>() {
+			@Override
+			public List<TextPost> execute(Connection conn) throws SQLException {
+				
+				//List<BookAuthor> bookAuthorList;
+				List<TextPost> postList = new ArrayList<TextPost>();
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet;
+				PreparedStatement stmt = null;				
+				ResultSet resultSet1;
+				int user_id;
+
+				try {
+					stmt = conn.prepareStatement(
+							"select user_id from users " +
+							"  where username = ?"
+					);
+					stmt.setString(1, username);
+					//stmt1.setString(2, firstName);
+					
+					// execute the query, get the result
+					resultSet1 = stmt.executeQuery();
+
+					
+					// if User was found then save author_id					
+					if (resultSet1.next()){
+						user_id = resultSet1.getInt(1); //TODO: if bug, do rows match up? start at 1, not 0
+					}
+					else{
+						System.out.println("User does not exist");
+						return null;
+					}
+					stmt1 = conn.prepareStatement(
+						"select * from textPosts"
+					);
+					resultSet = stmt1.executeQuery();
+					while(resultSet.next()){
+						TextPost post = new TextPost(resultSet.getInt(2), resultSet.getString(3), resultSet.getString(4));
+						if(post.getUserId() == user_id){
+							postList.add(post);
+						}
+						
+					}
+					return postList;
+				} finally {
+					
+					DBUtil.closeQuietly(stmt1);
+					//DBUtil.closeQuietly(insertBookAuthor);					
+				}
+			}
+		});
+		//return postList;
+	}
+
+	public List<TextPost> findMyTextPosts(User user) {		
+		return executeTransaction(new Transaction<List<TextPost>>() {
+			@Override
+			public List<TextPost> execute(Connection conn) throws SQLException {
+				
+				//List<BookAuthor> bookAuthorList;
+				List<TextPost> postList = new ArrayList<TextPost>();
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet;
+
+				try {
+					stmt1 = conn.prepareStatement(
+						"select * from textPosts"
+					  + "where user_id = ?"
+					);
+					
+					stmt1.setInt(1, user.getUserId());
+					
+					resultSet = stmt1.executeQuery();
+					while(resultSet.next()){
+						
+						postList.add(new TextPost(resultSet.getInt(2), resultSet.getString(3), resultSet.getString(4)));
+						
+					}
+					return postList;
+				} finally {
+					
+					DBUtil.closeQuietly(stmt1);				
 				}
 			}
 		});
