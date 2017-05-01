@@ -13,7 +13,7 @@ import edu.ycp.cs320.ms1.controller.UserHomeController;
 public class PostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String username;
-	private int postID;
+	private int postId;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -30,15 +30,9 @@ public class PostServlet extends HttpServlet {
 		else{
 			List posts = c.findAllTextPosts();
 			System.out.println(posts.size());
+			//System.out.println(posts.get(0));
 			req.setAttribute("allPosts", posts);
 			req.getSession().setAttribute("username", "guest");
-		}
-		
-		if(req.getSession().getAttribute("Post") != null){
-			List posts = c.findPostContents();
-			System.out.println(posts.size());
-			req.setAttribute("postID", posts);
-			postID = (int)req.getSession().getAttribute("postID");
 		}
 		
 		req.getRequestDispatcher("/_view/Post.jsp").forward(req, resp);
@@ -49,27 +43,26 @@ public class PostServlet extends HttpServlet {
 				throws ServletException, IOException {
 			
 			UserHomeController c = new UserHomeController();
+			String post = null;
+			String byButton = req.getParameter("bybutton");
 			
 			if(req.getSession().getAttribute("username") != null){
 				List posts = c.findAllTextPosts();
 				System.out.println(posts.size());
-				req.setAttribute("allPosts", posts);
+				req.setAttribute("myPosts", posts);
 				username = (String) req.getSession().getAttribute("username");
 			}
 			else{
-				List posts = c.findAllTextPosts();
-				System.out.println(posts.size());
-				req.setAttribute("allPosts", posts);
+				String posts = c.findPostContents(postId);
+				System.out.println(posts.length());
+				req.setAttribute("myPosts", posts);
 				req.getSession().setAttribute("username", "guest");
+				postId = (int) req.getSession().getAttribute("postId");
 			}
-					
-		
-			if(req.getParameter("postID") != null){
-				List posts = c.findAllTextPosts();
-				System.out.println(posts.get((int)postID));
-				req.setAttribute("postID", posts);
-				//resp.sendRedirect(req.getContextPath() + "/Post");
-			}
+							
+//			if (byButton.equals(c.findPostTitle(postId))) {
+//				post = c.findPostContents(postId);
+//			}
 			
 		}
 }

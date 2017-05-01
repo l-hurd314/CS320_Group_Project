@@ -19,17 +19,15 @@
 		    </div>   
 		    
 		    <div class="main_bar"> 
-				<p><c:forEach items="${postID}" var="item" varStatus="i">
+					<p><c:forEach items="${myPosts}" var="item" varStatus="i">
 						${item.title }
-				</c:forEach></p>		
+				</c:forEach></p>	
 		    </div> 
 			
 			<div class="postList">
-					<p><c:forEach items="${postID}" var="item" varStatus="i">
-						<c:when test="${2 eq postID}">
-							${item.contents }
-						</c:when>
-				</c:forEach></p>		
+				<p><c:forEach items="${myPosts}" var="item" varStatus="i">
+					${item.contents }
+				</c:forEach></p>	
 			</div>
 		</div>
 	</body>

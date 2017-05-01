@@ -34,6 +34,14 @@ body {
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
+.title_header{
+	font-size: 150%;
+	font-weight: bold;
+	font-variant: small-caps; 
+	color: #4a89ef;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 .main_bar{
 	background-color: #4a89ef;
 	margin-top: 10px;
@@ -209,6 +217,8 @@ a:active {
 input.text_box {
 	vertical-align: text-top;
 	background-color: white;
+	text-align: top;
+	word-wrap: break-word;
 	height: 500px;
 	width: 500px;
 	font-family: "Comic Sans MS", cursive, sans-serif;
@@ -261,26 +271,6 @@ input.delete {
 }
 
 input.delete:hover {
-    background-color: #9ec2ff;
-    color: white;
-}
-
-input.delete_page_button {
-	width: 100px;
-	height: 30px;
-	background-color: white;
-    border-radius: 12px;
-    transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    margin-top: 30px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    float: right;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
-}
-
-input.delete_page_button:hover {
     background-color: #9ec2ff;
     color: white;
 }

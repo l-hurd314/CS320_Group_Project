@@ -21,16 +21,21 @@
 		    <div class="main_bar"> 
 				Welcome Home! 
 		    </div>
+		    
 		    <div class="postList">
-		    	<c:forEach items="${allPosts}" var="item" varStatus="i">
-					<li><a href="${pageContext.servletContext.contextPath}/Post">${item.title } </a>
+		    	<c:forEach items="${myPosts}" var="item" varStatus="i">
+		    	<tr>
+					<h>${item.title } </h>
+					<br>${item.contents }</br>
 						<form action="${pageContext.servletContext.contextPath}/delete" method="get">
 							<input name="delete" type="Submit" value="Delete" class="login_page_button" class="login_page_button:hover"><br><br><br>
-						</form></li>
+						</form>
+					</tr>
 				</c:forEach>
 		    </div> 
 			
 			<br><br>
+			
 			 <form action="${pageContext.servletContext.contextPath}/NewPost" method="get">
 				<input name="NewPost" type="Submit" value="New Post" class="NewPost" class="NewPost:hover">
 			</form>

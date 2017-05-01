@@ -32,10 +32,10 @@ public class UserHomeServlet extends HttpServlet {
 			username = (String) req.getSession().getAttribute("username");
 		}
 		else{
-			/*List posts = c.findAllTextPosts();
+			List posts = c.findAllTextPosts();
 			System.out.println(posts.size());
 			req.setAttribute("allPosts", posts);
-			req.getSession().setAttribute("username", "guest");*/
+			req.getSession().setAttribute("username", "guest");
 		}
 				
 		req.getRequestDispatcher("/_view/UserHome.jsp").forward(req, resp);
