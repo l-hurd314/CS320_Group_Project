@@ -582,28 +582,68 @@ public class DerbyDatabase implements IDatabase {
 	
 	
 	
-	public Integer deletePost(int post_id) {
+	public Integer deletePost(int post_id, int user_id) {
 		// TODO Auto-generated method stub
 		
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
 			public Integer execute(Connection conn) throws SQLException {
-
 				PreparedStatement stmt1 = null;
+				PreparedStatement stmt2 = null;
+				PreparedStatement stmt3 = null;
+				ResultSet resultSet1 = null;
+				ResultSet resultSet2 = null;
+				int user = -1;
+				int result = -1;
 
 				try {
+					//get target post's user-----------------------------------
 					stmt1 = conn.prepareStatement(
+							"select * from textposts " 
+						  + "where post_id = ?"
+					);
+					
+					stmt1.setInt(1, post_id);
+					
+					resultSet1 = stmt1.executeQuery();
+					
+					while(resultSet1.next()){
+						user = resultSet1.getInt(2);
+					}
+					
+					//if yours, delete-----------------------------------------
+					if(user == user_id){
+						stmt2 = conn.prepareStatement(
 						"delete from textPosts"
 					  + "where post_id = ?"
+					  );
+					  stmt2.setInt(1, post_id);
+					  stmt2.executeUpdate();
+					}
+					
+					//confirm deletion-----------------------------------------
+					stmt3 = conn.prepareStatement(
+							"select * from textposts " 
+						  + "where post_id = ?"
 					);
-					stmt1.setInt(1, post_id);
-					stmt1.executeUpdate();
-
+					
+					stmt3.setInt(1, post_id);
+					
+					resultSet2 = stmt3.executeQuery();
+					
+					if(!resultSet2.next()){
+						result = 1;
+					}
+					
 				} finally {
 					
-					DBUtil.closeQuietly(stmt1);					
+					DBUtil.closeQuietly(stmt1);	
+					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
+					DBUtil.closeQuietly(resultSet1);
+					DBUtil.closeQuietly(resultSet2);
 				}
-				return post_id;
+				return result;
 			}
 		});
 	}

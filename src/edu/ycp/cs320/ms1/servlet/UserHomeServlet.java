@@ -25,16 +25,17 @@ public class UserHomeServlet extends HttpServlet {
 		
 		UserHomeController c = new UserHomeController();
 		if(req.getSession().getAttribute("username") != null){
-			List posts = c.findAllTextPosts();
-			System.out.println(posts.size());
-			req.setAttribute("allPosts", posts);
+			username = (String) req.getSession().getAttribute("username");
+			List posts = c.findMyTextPosts(username);
+			//System.out.println(posts.size());
+			req.setAttribute("myPosts", posts);
 			username = (String) req.getSession().getAttribute("username");
 		}
 		else{
-			List posts = c.findAllTextPosts();
+			/*List posts = c.findAllTextPosts();
 			System.out.println(posts.size());
 			req.setAttribute("allPosts", posts);
-			req.getSession().setAttribute("username", "guest");
+			req.getSession().setAttribute("username", "guest");*/
 		}
 				
 		req.getRequestDispatcher("/_view/UserHome.jsp").forward(req, resp);
@@ -52,30 +53,30 @@ public class UserHomeServlet extends HttpServlet {
 			UserHomeController c = new UserHomeController();
 			
 			if(req.getSession().getAttribute("username") != null){
+				username = (String) req.getSession().getAttribute("username");
 				List posts = c.findAllTextPosts();
 				System.out.println(posts.size());
-				req.setAttribute("allPosts", posts);
-				username = (String) req.getSession().getAttribute("username");
+				req.setAttribute("myPosts", posts);				
 			}
 			else{
-				List posts = c.findAllTextPosts();
+				/*List posts = c.findAllTextPosts();
 				System.out.println(posts.size());
 				req.setAttribute("allPosts", posts);
-				req.getSession().setAttribute("username", "guest");
+				req.getSession().setAttribute("username", "guest");*/
 			}
 			
 			
 			if(req.getParameter("Post") != null){
-				List posts = c.findAllTextPosts();
+				List posts = c.findMyTextPosts(username);
 				System.out.println(posts.size());
-				req.setAttribute("allPosts", posts);
+				req.setAttribute("myPosts", posts);
 				resp.sendRedirect(req.getContextPath() + "/Post");
 			}
 			
 			if(req.getParameter("New Post") != null){
-				List posts = c.findAllTextPosts();
+				List posts = c.findMyTextPosts(username);
 				System.out.println(posts.size());
-				req.setAttribute("allPosts", posts);
+				req.setAttribute("myPosts", posts);
 				resp.sendRedirect(req.getContextPath() + "/NewPost");
 			}
 
