@@ -23,16 +23,16 @@
 		    </div> 
 		
 			<div>
-				<form action="${pageContext.servletContext.contextPath}/UserHome" method="post">
-					<input name="UserHome" type="Submit" value="Yes" class="login_page_button" class="login_page_button:hover">
+				<form action="${pageContext.servletContext.contextPath}/UserHome" method="get">
+					<input name="yes" type="Submit" value="Yes" class="login_page_button" class="login_page_button:hover">
 				</form>
 				
 				<br>
 				<br>
 				<br>
 				
-				<form action="${pageContext.servletContext.contextPath}/UserHome" method="post">
-					<input name="UserHome" type="Submit" value="No" class="login_page_button" class="login_page_button:hover">
+				<form action="${pageContext.servletContext.contextPath}/UserHome" method="get">
+					<input name="no" type="Submit" value="No" class="login_page_button" class="login_page_button:hover">
 				</form>
 			</div>
 		</div>
