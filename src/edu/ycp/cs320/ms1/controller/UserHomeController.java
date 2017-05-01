@@ -8,11 +8,18 @@ import edu.ycp.cs320.ms1.persist.DerbyDatabase;
 
 public class UserHomeController {
 	DerbyDatabase db = new DerbyDatabase();
+	
 	public List<TextPost> findAllTextPosts(){
 		return db.findAllTextPosts();
 	}
-	public List<TextPost> findPostContents(){
-		return db.findPostContents();
+	public List<TextPost> findMyTextPosts(String username){
+		return db.findMyTextPosts(username);
+	}
+	public String findPostContents(int post_id){
+		return db.findPostContents(post_id);
+	}
+	public String findPostTitle(int post_id){
+		return db.findPostTitle(post_id);
 	}
 	/*public TextPost findTextPostByTitle(String title){
 		/*stmt = conn.prepareStatement(
