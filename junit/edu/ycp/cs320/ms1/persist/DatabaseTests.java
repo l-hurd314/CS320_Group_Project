@@ -139,7 +139,28 @@ private IDatabase db = null;
 			System.out.println("User <" + users.get(users.size()-1).getUsername() + "> added to Library DB");
 		}	
 	}
+	
+	@Test
+	public void testIsGoodCreds() {
 
+		System.out.println("\n*** Testing isGoodCreds ***");
+
+		// get the list of (Author, Book) pairs from DB
+		int result1 = db.isGoodCreds("Hurd", "Liam");
+		int result2 = db.isGoodCreds("Hurr", "Durr");
+		int result3 = db.isGoodCreds("Hurd", "Bleh");
+		int result4 = db.isGoodCreds("Hurrd", "Liam");
+		int result5 = db.isGoodCreds("Testman2", "one");
+		int result6 = db.isGoodCreds("Matt", "Ritchie");
+		
+		assertEquals(1, result1);
+		assertEquals(-1, result2);
+		assertEquals(0, result3);
+		assertEquals(-1, result4);
+		assertEquals(2, result5);
+		assertEquals(1, result6);
+	}
+	
 	@Test
 	public void testInsertTextPostIntoTextPostsTable() {
 		System.out.println("\n*** Testing insertTextPostIntoTextPostsTable ***");

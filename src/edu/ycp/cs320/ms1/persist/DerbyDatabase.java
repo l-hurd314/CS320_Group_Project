@@ -233,8 +233,12 @@ public class DerbyDatabase implements IDatabase {
 							result = 2;
 						}
 						else {
-							if(resultlist.get(0).equals(password)){
+							System.out.println(resultlist.get(0));
+							String dbPass = new String(resultlist.get(0));
+							System.out.println(dbPass);
+							if(dbPass.equals(password)){
 								result = 1;
+								System.out.println("Matched.");
 							}
 							else {
 								result = 0;
@@ -522,7 +526,7 @@ public class DerbyDatabase implements IDatabase {
 				try {
 					int nameOK = isNameOK(userName);
 					
-					// if User was found then save author_id					
+					// if User was found then error					
 					if (nameOK != 1)
 					{
 						System.out.println("ERROR: User <" + userName + "> already exists.");	
