@@ -513,157 +513,68 @@ public class DerbyDatabase implements IDatabase {
 			public Integer execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;
 				PreparedStatement stmt2 = null;			
-				
 				ResultSet resultSet1 = null;
-//	(unused)	ResultSet resultSet2 = null;
-				ResultSet resultSet3 = null;
-//	(unused)	ResultSet resultSet4 = null;
-				ResultSet resultSet5 = null;				
-//	(unused)	ResultSet resultSet6 = null;
+
 				
 				// for saving author ID and book ID
 				Integer user_id = -1;
-				Integer post_id   = -1;
 
 				// try to retrieve author_id (if it exists) from DB, for User's full name, passed into query
 				try {
-					//TODO: check capitalization on variable name
-					stmt1 = conn.prepareStatement(
-							"select user_id from users " +
-							"  where username = ?"
-					);
-					stmt1.setString(1, userName);
-					//stmt1.setString(2, firstName);
-					
-					// execute the query, get the result
-					resultSet1 = stmt1.executeQuery();
-
+					int nameOK = isNameOK(userName);
 					
 					// if User was found then save author_id					
-					if (resultSet1.next())
+					if (nameOK != 1)
 					{
-						user_id = resultSet1.getInt(1); //TODO: if bug, do rows match up? start at 0? 1?
-						System.out.println("User <" + userName + "> found with ID: " + user_id);						
+						System.out.println("ERROR: User <" + userName + "> already exists.");	
+						return -1;
 					}
 					else
 					{
-						System.out.println("ERROR: user should always be in users list before being allowed to post.\n"
-								+ "You should not be seeing this.");
-						System.out.println("User <" + userName + "> not found");
 						
-						// if the User is new, insert new User into Users table
-						if (user_id <= 0) {
-							// prepare SQL insert statement to add User to Users table
-							stmt2 = conn.prepareStatement(
-									"insert into users (username) " +
-									"  values(?) "
-							);
-							stmt2.setString(1, userName);
-							//stmt2.setString(2, firstName);
-							
-							// execute the update
-							stmt2.executeUpdate();
-							
-							System.out.println("New user <" + userName + "> inserted in Users table");						
+						System.out.println("User <" + userName + "> not found, which is good.");
+
+						// prepare SQL insert statement to add User to Users table
+						stmt1 = conn.prepareStatement(
+								"insert into users (username) " +
+								"  values(?) "
+						);
+						stmt1.setString(1, userName);
+						//stmt2.setString(2, firstName);
 						
-							// try to retrieve author_id for new User - DB auto-generates author_id
-							stmt3 = conn.prepareStatement(
-									"select user_id from USERS " +
-									"  where username = ?"
-							);
-							stmt3.setString(1, userName);
-							//stmt3.setString(2, firstName);
-							
-							// execute the query							
-							resultSet3 = stmt3.executeQuery();
-							
-							// get the result - there had better be one							
-							if (resultSet3.next())
-							{
-								user_id = resultSet3.getInt(1);
-								System.out.println("New user <" + userName + "> ID: " + user_id);						
-							}
-							else	// really should throw an exception here - the new author should have been inserted, but we didn't find them
-							{
-								System.out.println("New user <" + userName + "> not found in Users table (ID: " + user_id + ")");
-							}
+						// execute the update
+						stmt1.executeUpdate();
+						
+						System.out.println("New user <" + userName + "> inserted in Users table");						
+					
+						// try to retrieve author_id for new User - DB auto-generates author_id
+						stmt2 = conn.prepareStatement(
+								"select user_id from USERS " +
+								"  where username = ?"
+						);
+						stmt2.setString(1, userName);
+						//stmt3.setString(2, firstName);
+						
+						// execute the query							
+						resultSet1 = stmt2.executeQuery();
+						
+						// get the result - there had better be one							
+						if (resultSet1.next()){
+						
+							user_id = resultSet1.getInt(1);
+							System.out.println("New user <" + userName + "> ID: " + user_id);						
+						}
+						else{	
+							// really should throw an exception here - the new author should have been inserted, but we didn't find them
+							System.out.println("New user <" + userName + "> not found in Users table (ID: " + user_id + ")");
 						}
 					}
+					return user_id;
 					
-					// now insert new TextPost into Posts table
-					// prepare SQL insert statement to add new TextPost to Books table
-					//Table setup: post id, user id, title, content
-					stmt4 = conn.prepareStatement(
-							"insert into textPosts (user_id, title, contents) " +
-							"  values(?, ?, ?) "
-					);
-					stmt4.setString(2, title);
-					stmt4.setInt(1, user_id);
-					stmt4.setString(3, content);
-					
-					// execute the update
-					stmt4.executeUpdate();
-					
-					System.out.println("New post <" + title + "> inserted into Posts table");					
-
-					// now retrieve book_id for new TextPost, so that we can set up BookAuthor entry
-					// and return the book_id, which the DB auto-generates
-					// prepare SQL statement to retrieve book_id for new TextPost
-					stmt5 = conn.prepareStatement(
-							"select post_id from textPosts " +
-							"  where title = ? and user_id = ? and contents = ? "
-									
-					);
-					stmt5.setString(1, title);
-					stmt5.setString(3, content);
-					stmt5.setInt(2, user_id);
-
-					// execute the query
-					resultSet5 = stmt5.executeQuery();
-					
-					// get the result - there had better be one
-					if (resultSet5.next())
-					{
-						post_id = resultSet5.getInt(1);
-						System.out.println("New post <" + title + "> ID: " + post_id);						
-					}
-					else	// really should throw an exception here - the new book should have been inserted, but we didn't find it
-					{
-						System.out.println("New post <" + title + "> not found in Posts table (ID: " + post_id);
-					}
-	//TODO: We only need the rest of this if we do a 3-table setup				
-					/*
-					// now that we have all the information, insert entry into BookAuthors table
-					// which is the junction table for Books and Authors
-					// prepare SQL insert statement to add new TextPost to Books table
-					stmt6 = conn.prepareStatement(
-							"insert into bookAuthors (book_id, author_id) " +
-							"  values(?, ?) "
-					);
-					stmt6.setInt(1, book_id);
-					stmt6.setInt(2, author_id);
-					
-					// execute the update
-					stmt6.executeUpdate();
-					
-					System.out.println("New entry for book ID <" + book_id + "> and author ID <" + author_id + "> inserted into BookAuthors junction table");						
-					
-					System.out.println("New book <" + title + "> inserted into Books table");					
-					*/
-					return post_id;
 				} finally {
 					DBUtil.closeQuietly(resultSet1);
 					DBUtil.closeQuietly(stmt1);
-//	(unused)		DBUtil.closeQuietly(resultSet2);
 					DBUtil.closeQuietly(stmt2);					
-					DBUtil.closeQuietly(resultSet3);
-					DBUtil.closeQuietly(stmt3);					
-// (unused)			DBUtil.closeQuietly(resultSet4);
-					DBUtil.closeQuietly(stmt4);
-					DBUtil.closeQuietly(resultSet5);
-					DBUtil.closeQuietly(stmt5);
-// (unused)			DBUtil.closeQuietly(resultSet6);
-					DBUtil.closeQuietly(stmt6);
 				}
 			}
 		});
