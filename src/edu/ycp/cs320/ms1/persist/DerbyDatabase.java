@@ -581,6 +581,33 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	
+	
+	public Integer deletePost(int post_id) {
+		// TODO Auto-generated method stub
+		
+		return executeTransaction(new Transaction<Integer>() {
+			@Override
+			public Integer execute(Connection conn) throws SQLException {
+
+				PreparedStatement stmt1 = null;
+
+				try {
+					stmt1 = conn.prepareStatement(
+						"delete from textPosts"
+					  + "where post_id = ?"
+					);
+					stmt1.setInt(1, post_id);
+					stmt1.executeUpdate();
+
+				} finally {
+					
+					DBUtil.closeQuietly(stmt1);					
+				}
+				return post_id;
+			}
+		});
+	}
+
 /*	
 	// transaction that deletes TextPost (and possibly its User) from Library
 	@Override
