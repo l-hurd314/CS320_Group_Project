@@ -23,12 +23,14 @@
 				New Post
 		    </div> 
 		    
+		    <!--
 			<select class="dropbtn">
 				      <option value="select" selected>Select File Type</option>
 				      <option value="text">Text File</option>
 				      <option value="image">Image</option>
 				      <option value="video">Video</option>
 			</select>
+			-->
 			
 			<div>	
 				<c:if test="${! empty errorMessage}">

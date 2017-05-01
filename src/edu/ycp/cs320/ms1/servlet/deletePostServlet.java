@@ -21,6 +21,7 @@ public class deletePostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		//checks button
 		if(req.getParameter("Yes") != null){
 			resp.sendRedirect(req.getContextPath() + "/UserHome");
 		}
@@ -29,4 +30,5 @@ public class deletePostServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/UserHome");
 		}
 	}
+
 }
