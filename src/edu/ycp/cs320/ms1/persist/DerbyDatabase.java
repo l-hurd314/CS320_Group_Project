@@ -792,7 +792,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	// retrieves User information from query result set
-		private void loadUser(User user, ResultSet resultSet, int index) throws SQLException {
+	private void loadUser(User user, ResultSet resultSet, int index) throws SQLException {
 			user.setUserId(resultSet.getInt(index++));
 			user.setUsername(resultSet.getString(index++));
 			user.setPassword(resultSet.getString(index++));
@@ -961,26 +961,16 @@ public class DerbyDatabase implements IDatabase {
 		System.out.println("Library DB successfully initialized!");
 	}
 
-
 	@Override
 	public List<edu.ycp.cs320.ms1.model.Pair<User, TextPost>> findUserAndTextPostByTitle(String title) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	@Override
 	public List<edu.ycp.cs320.ms1.model.Pair<User, TextPost>> findUserAndTextPostByUsername(String username) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-
-	@Override
-	public void addTextPost(String username, String contents, String title) {
-		// TODO Auto-generated method stub
-		
-		
 	}
 
 	public List<TextPost> findAllTextPosts() {
@@ -1016,29 +1006,64 @@ public class DerbyDatabase implements IDatabase {
 		//return postList;
 	}
 	
-	public List<TextPost> findPostID() {
+	public String findPostContents(int post_id) {
 		// TODO Auto-generated method stub
 		
-		return executeTransaction(new Transaction<List<TextPost>>() {
+		return executeTransaction(new Transaction<String>() {
 			@Override
-			public List<TextPost> execute(Connection conn) throws SQLException {
+			public String execute(Connection conn) throws SQLException {
 				
 				//List<BookAuthor> bookAuthorList;
-				List<TextPost> postList = new ArrayList<TextPost>();
+				String contents = null;
 				PreparedStatement stmt1 = null;
 				ResultSet resultSet;
 				//PreparedStatement insertBookAuthor = null;
 
 				try {
 					stmt1 = conn.prepareStatement(
-						"select post_ID from textPosts"
+						"select * from textPosts"
+					  + "where post_id = ?"
 					);
+					stmt1.setInt(1, post_id);
 					resultSet = stmt1.executeQuery();
 					while(resultSet.next()){
-						
-						postList.get(resultSet.getInt(2));
+						contents  = new String(resultSet.getString(4));
 					}
-					return postList;
+					return contents;
+				} finally {
+					
+					DBUtil.closeQuietly(stmt1);
+					//DBUtil.closeQuietly(insertBookAuthor);					
+				}
+			}
+		});
+		//return postList;
+	}
+
+	public String findPostTitle(int post_id) {
+		// TODO Auto-generated method stub
+		
+		return executeTransaction(new Transaction<String>() {
+			@Override
+			public String execute(Connection conn) throws SQLException {
+				
+				//List<BookAuthor> bookAuthorList;
+				String title = null;
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet;
+				//PreparedStatement insertBookAuthor = null;
+
+				try {
+					stmt1 = conn.prepareStatement(
+						"select * from textPosts"
+					  + "where post_id = ?"
+					);
+					stmt1.setInt(1, post_id);
+					resultSet = stmt1.executeQuery();
+					while(resultSet.next()){
+						title = new String(resultSet.getString(3));
+					}
+					return title;
 				} finally {
 					
 					DBUtil.closeQuietly(stmt1);
@@ -1144,10 +1169,15 @@ public class DerbyDatabase implements IDatabase {
 		//return postList;
 	}
 
-
 	@Override
 	public TextPost findTextPostByTitle(String title) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addTextPost(String username, String contents, String title) {
+		// TODO Auto-generated method stub
+		
 	}
 }
