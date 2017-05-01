@@ -334,7 +334,6 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
-	
 	// transaction that inserts new TextPost into the Books table
 	// also first inserts new User into Authors table, if necessary
 	// and then inserts entry into BookAuthors junction table
@@ -579,8 +578,6 @@ public class DerbyDatabase implements IDatabase {
 			}
 		});
 	}
-	
-	
 	
 	public Integer deletePost(int post_id, int user_id) {
 		// TODO Auto-generated method stub
