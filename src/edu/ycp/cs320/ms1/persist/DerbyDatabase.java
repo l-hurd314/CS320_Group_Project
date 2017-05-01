@@ -232,7 +232,7 @@ public class DerbyDatabase implements IDatabase {
 						else if(resultlist.size()>1){
 							result = 2;
 						}
-						else {
+						else if(resultlist.size()==1  &&  resultlist.get(0) != null) {
 							System.out.println(resultlist.get(0));
 							String dbPass = new String(resultlist.get(0));
 							System.out.println(dbPass);
@@ -243,6 +243,9 @@ public class DerbyDatabase implements IDatabase {
 							else {
 								result = 0;
 							}
+						}
+						else {
+							result = 3;
 						}
 						
 						return result;
