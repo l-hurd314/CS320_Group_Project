@@ -44,16 +44,14 @@
 					<table>
 						<tr>
 							<td class="label">Username:</td>
-							<td><input type="text" name="username" size="12" class="login_page" value="${game.value1} " /></td>
+							<td><input type="text" name="username" size="12" value="${username}" class="login_page"></td>
 						</tr>
 						<tr>
 							<td class="label">Password:</td>
-							<td><input type="password" name="password" size="12" class="login_page" value="${game.value2}" /></td>
+							<td><input type="password" name="password" size="12" value="${password}" class="login_page"></td>
 						</tr>
 					</table>
-					
 					<input type="Submit" name="login" value="Log In" class="login_page_button" class="login_page_button:hover">
-				
 				</form>
 			</div>
 		</div>

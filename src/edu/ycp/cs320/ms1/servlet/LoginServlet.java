@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ycp.cs320.ms1.controller.NumbersController;
-import edu.ycp.cs320.ms1.model.Numbers;
+import edu.ycp.cs320.ms1.controller.LoginController;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	String username;
+	String password;
+	String errorMessage = null;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -24,21 +27,27 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//Numbers model = new Numbers();
 		
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		String errorMessage = null;
+		LoginController controller = new LoginController();
 		
-		if(username.equals("Test") && password.equals("test1")){
-			req.getSession().setAttribute("username", username);
+		/*if(req.getSession().getAttribute("username") != null){
+			req.setAttribute("username", username);
+			System.out.println(username);
 			resp.sendRedirect(req.getContextPath() + "/UserHome");
+			
+			
+		}*/
+		
+		if(controller.isGoodCreds(username, password) == 1){
+			resp.sendRedirect(req.getContextPath() + "/UserHome");
+			
 		}
-		resp.sendRedirect(req.getContextPath() + "/UserHome");
-		/*else{
+		
+		else{
 			errorMessage = "Invalid Login.";
 			req.setAttribute("errorMessage", errorMessage);
 			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-		}*/
-		
+		}
+		//resp.sendRedirect(req.getContextPath() + "/UserHome");
 		
 		/*
 		// Decode form parameters and dispatch to controller
@@ -80,17 +89,17 @@ public class LoginServlet extends HttpServlet {
 	}
 
 		
-	private Double getDouble(HttpServletRequest req, String name) {
-		return Double.parseDouble(req.getParameter(name));
+	//private Double getDouble(HttpServletRequest req, String name) {
+	//	return Double.parseDouble(req.getParameter(name));
 		
-	}
-	private Double getDoubleFromParameter(String s) {
-		if (s == null || s.equals("")) {
-			return null;
-		} else {
-			return Double.parseDouble(s);
-		}
-	}
+//	}
+	//private Double getDoubleFromParameter(String s) {
+	//	if (s == null || s.equals("")) {
+	//		return null;
+	//	} else {
+	//		return Double.parseDouble(s);
+	//	}
+	//}
 	/*
 	package edu.ycp.cs320.lab02.servlet;
 

@@ -81,7 +81,7 @@ public class insertPostServlet extends HttpServlet {
 			// convert published to integer now that it is valid
 			published = Integer.parseInt(strPublished);
 			
-			// get list of books returned from query			
+			// get list of post returned from query			
 			if (controller.insertPostIntoPostsTable(title, username, content)) {
 				successMessage = title;
 			}
