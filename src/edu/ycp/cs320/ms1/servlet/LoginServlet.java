@@ -1,6 +1,7 @@
 package edu.ycp.cs320.ms1.servlet;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +12,10 @@ import edu.ycp.cs320.ms1.controller.LoginController;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Scanner keyboard = new Scanner(System.in);
 	
-	String username;
-	String password;
+	//String username = keyboard.nextLine();
+	//String password = keyboard.nextLine();
 	String errorMessage = null;
 
 	@Override
@@ -32,22 +34,22 @@ public class LoginServlet extends HttpServlet {
 		/*if(req.getSession().getAttribute("username") != null){
 			req.setAttribute("username", username);
 			System.out.println(username);
-			resp.sendRedirect(req.getContextPath() + "/UserHome");
 			
 			
 		}*/
 		
-		if(controller.isGoodCreds(username, password) == 1){
-			resp.sendRedirect(req.getContextPath() + "/UserHome");
-			
-		}
 		
-		else{
-			errorMessage = "Invalid Login.";
-			req.setAttribute("errorMessage", errorMessage);
-			req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
-		}
-		//resp.sendRedirect(req.getContextPath() + "/UserHome");
+		//if(controller.isGoodCreds(username, password) == 1){
+			//resp.sendRedirect(req.getContextPath() + "/UserHome");
+			
+		//}
+		
+		//else{
+			//errorMessage = "Invalid Login.";
+			//req.setAttribute("errorMessage", errorMessage);
+			//req.getRequestDispatcher("/_view/login.jsp").forward(req, resp);
+		//}
+		resp.sendRedirect(req.getContextPath() + "/UserHome");
 		
 		/*
 		// Decode form parameters and dispatch to controller
