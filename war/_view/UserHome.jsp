@@ -23,7 +23,10 @@
 		    </div>
 		    <div class="postList">
 		    	<c:forEach items="${allPosts}" var="item" varStatus="i">
-					<li><a href="${pageContext.servletContext.contextPath}/Post">${item.title }</a></li>
+					<li><a href="${pageContext.servletContext.contextPath}/Post">${item.title } </a>
+					<form action="${pageContext.servletContext.contextPath}/delete" method="get">
+							<input name="delete" type="Submit" value="Delete" class="delete" class="delete:hover">
+						</form></li>
 				</c:forEach>
 		    </div> 
 			
