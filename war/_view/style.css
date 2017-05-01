@@ -253,9 +253,9 @@ input.delete {
     transition-duration: 0.4s;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin-top: 30px;
-    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 10px;
-    float: left;
+    float: right;
     font-family: "Comic Sans MS", cursive, sans-serif;
     cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
 }
@@ -265,17 +265,17 @@ input.delete:hover {
     color: white;
 }
 
-input.delete_page_button{
+input.delete_page_button {
 	width: 100px;
 	height: 30px;
 	background-color: white;
     border-radius: 12px;
     transition-duration: 0.4s;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    margin-top: 8px;
-    margin-left: 10px;
+    margin-top: 30px;
+    margin-right: 10px;
     margin-bottom: 10px;
-    float: left;
+    float: right;
     font-family: "Comic Sans MS", cursive, sans-serif;
     cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
 }

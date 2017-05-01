@@ -23,12 +23,16 @@
 		    </div> 
 		
 			<div>
-				<form action="${pageContext.servletContext.contextPath}/delete" method="post">
-					<input name="delete" type="Submit" value="Yes" class="delete_page_button" class="delete_page_button:hover">
+				<form action="${pageContext.servletContext.contextPath}/UserHome" method="post">
+					<input name="UserHome" type="Submit" value="Yes" class="login_page_button" class="login_page_button:hover">
 				</form>
 				
-				<form action="${pageContext.servletContext.contextPath}/delete" method="post">
-					<input name="delete" type="Submit" value="No" class="delete_page_button" class="delete_page_button:hover">
+				<br>
+				<br>
+				<br>
+				
+				<form action="${pageContext.servletContext.contextPath}/UserHome" method="post">
+					<input name="UserHome" type="Submit" value="No" class="login_page_button" class="login_page_button:hover">
 				</form>
 			</div>
 		</div>

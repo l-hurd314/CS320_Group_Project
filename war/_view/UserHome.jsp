@@ -24,8 +24,8 @@
 		    <div class="postList">
 		    	<c:forEach items="${allPosts}" var="item" varStatus="i">
 					<li><a href="${pageContext.servletContext.contextPath}/Post">${item.title } </a>
-					<form action="${pageContext.servletContext.contextPath}/delete" method="get">
-							<input name="delete" type="Submit" value="Delete" class="delete" class="delete:hover">
+						<form action="${pageContext.servletContext.contextPath}/delete" method="get">
+							<input name="delete" type="Submit" value="Delete" class="login_page_button" class="login_page_button:hover"><br><br><br>
 						</form></li>
 				</c:forEach>
 		    </div> 
