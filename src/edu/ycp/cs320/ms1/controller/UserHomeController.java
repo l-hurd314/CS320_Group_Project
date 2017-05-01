@@ -11,6 +11,9 @@ public class UserHomeController {
 	public List<TextPost> findAllTextPosts(){
 		return db.findAllTextPosts();
 	}
+	public List<TextPost> findPostID(){
+		return db.findPostID();
+	}
 	/*public TextPost findTextPostByTitle(String title){
 		/*stmt = conn.prepareStatement(
 				"select authors.*, books.* " +

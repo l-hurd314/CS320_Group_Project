@@ -23,8 +23,11 @@
 		    </div> 
 			
 			<div class="postList">
-				<p><c:forEach items="${allPosts}" var="item" varStatus="i">
-					${item.contents }</c:forEach></p>			
+					<p><c:forEach items="${allPosts}" var="item" varStatus="i">
+					<option value="${TextPost.postID}">
+						${item.contents }
+					</option>
+				</c:forEach></p>		
 			</div>
 		</div>
 	</body>

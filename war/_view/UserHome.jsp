@@ -26,17 +26,6 @@
 					<li><a href="${pageContext.servletContext.contextPath}/Post">${item.title }</a></li>
 				</c:forEach>
 		    </div> 
-			<!-- 
-			<div class="postList">
-				<ul style="list-style-type:none">
-		  			<a href="${pageContext.servletContext.contextPath}/Post" target="_blank" class="postList">
-						"It is a mistake to think you can solve any major problems just with potatoes."</a>
-						<c:forEach items="${allPosts}" var="item" varStatus="i">
-							<li>${item.title }</li>
-						</c:forEach>
-				</ul>
-			</div>
-			 -->
 			
 			 <form action="${pageContext.servletContext.contextPath}/NewPost" method="get">
 				<input name="NewPost" type="Submit" value="New Post" class="NewPost" class="NewPost:hover">

@@ -1015,6 +1015,39 @@ public class DerbyDatabase implements IDatabase {
 		});
 		//return postList;
 	}
+	
+	public List<TextPost> findPostID() {
+		// TODO Auto-generated method stub
+		
+		return executeTransaction(new Transaction<List<TextPost>>() {
+			@Override
+			public List<TextPost> execute(Connection conn) throws SQLException {
+				
+				//List<BookAuthor> bookAuthorList;
+				List<TextPost> postList = new ArrayList<TextPost>();
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet;
+				//PreparedStatement insertBookAuthor = null;
+
+				try {
+					stmt1 = conn.prepareStatement(
+						"select post_ID from textPosts"
+					);
+					resultSet = stmt1.executeQuery();
+					while(resultSet.next()){
+						
+						postList.get(resultSet.getInt(2));
+					}
+					return postList;
+				} finally {
+					
+					DBUtil.closeQuietly(stmt1);
+					//DBUtil.closeQuietly(insertBookAuthor);					
+				}
+			}
+		});
+		//return postList;
+	}
 
 	@Override
 	public List<TextPost> findMyTextPosts(String username) {
