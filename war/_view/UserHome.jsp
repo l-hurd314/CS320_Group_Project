@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -26,6 +27,19 @@
 		    	<c:forEach items="${myPosts}" var="item" varStatus="i">
 		    	<tr>
 					<h>${item.title } </h>
+					<br>${item.contents }</br>
+						<form action="${pageContext.servletContext.contextPath}/delete" method="get">
+							<input name="delete" type="Submit" value="Delete" class="login_page_button" class="login_page_button:hover"><br><br><br>
+						</form>
+					</tr>
+				</c:forEach>
+		    </div> 
+		    
+		    <div class="postList">
+		    	<c:forEach items="${fi}" var="item" varStatus="i">
+		    	<tr>
+		    		<img src="${pageContext.request.contextPath}/CS320_ms1/nullPenguin.jpg"/>
+					<h>${item.fileName } </h>
 					<br>${item.contents }</br>
 						<form action="${pageContext.servletContext.contextPath}/delete" method="get">
 							<input name="delete" type="Submit" value="Delete" class="login_page_button" class="login_page_button:hover"><br><br><br>

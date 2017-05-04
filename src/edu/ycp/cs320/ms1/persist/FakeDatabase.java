@@ -133,4 +133,22 @@ public class FakeDatabase implements IDatabase{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int isGoodCreds(String username, String password) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<TextPost> findMyTextPosts(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TextPost> findMyTextPosts(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

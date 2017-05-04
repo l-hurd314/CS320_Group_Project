@@ -25,8 +25,7 @@ public interface IDatabase {
 	 * @param title
 	 */
 	void addTextPost(String username, String contents, String title);
-	//public List<Pair<User, TextPost>> findUserAndTextPostByUsername(username);
-
+	
 	Integer insertPostIntoPostsTable(String title, String username, String content);
 	//Table setup: post id, user id, title, content
 

@@ -41,6 +41,8 @@
 					<div class="success">Successfully added ${successMessage} to Library</div>
 				</c:if>
 				
+				<!-- 
+				
 				<form action="${pageContext.servletContext.contextPath}/NewPost" method="post">
 					<table>
 						<tr>
@@ -54,6 +56,15 @@
 					</table>
 					<input type="Submit" name="login" value="Submit" class="login_page_button login_page_button:hover">
 				</form>
+				
+				 -->
+				 
+				 <form action="${pageContext.servletContext.contextPath}/NewPost" method="post" enctype="multipart/form-data">
+			      		<input type="file" name="file" size="100"/>
+			       <br />
+			       <br />
+			    		<input type="submit" value="Upload File" class="login_page_button login_page_button:hover"/>
+			       </form>
 			</div>		
 		</div>
 	</body>

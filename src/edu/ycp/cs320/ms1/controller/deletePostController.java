@@ -8,9 +8,10 @@ import edu.ycp.cs320.ms1.persist.DerbyDatabase;
 
 public class deletePostController {
 	int post_id;
+	int user_id;
 	DerbyDatabase db = new DerbyDatabase();
-	public List<TextPost> deletePost(){
-		return db.deletePost(post_id);
+	public Integer deletePost(){
+		return db.deletePost(post_id, user_id);
 	}
 
 }

@@ -325,6 +325,7 @@ public class DerbyDatabase implements IDatabase {
 						
 						User user = new User();
 						loadUser(user, resultSet, 1);
+						
 						System.out.println(user.getPassword());
 						result.add(user);
 					}
@@ -872,29 +873,28 @@ public class DerbyDatabase implements IDatabase {
 		}
 	
 //TODO Dunno if we need this stuff
-/*
+
 	// retrieves User information from query result set
-	private void loadAuthor(User author, ResultSet resultSet, int index) throws SQLException {
-		author.setAuthorId(resultSet.getInt(index++));
-		author.setLastname(resultSet.getString(index++));
-		author.setFirstname(resultSet.getString(index++));
-	}
+//	private void loadAuthor(User author, ResultSet resultSet, int index) throws SQLException {
+//		author.setAuthorId(resultSet.getInt(index++));
+//		author.setLastname(resultSet.getString(index++));
+//		author.setFirstname(resultSet.getString(index++));
+//	}
 	
 	// retrieves TextPost information from query result set
-	private void loadBook(TextPost book, ResultSet resultSet, int index) throws SQLException {
-		book.setBookId(resultSet.getInt(index++));
-//		book.setAuthorId(resultSet.getInt(index++));  // no longer used
-		book.setTitle(resultSet.getString(index++));
-		book.setIsbn(resultSet.getString(index++));
-		book.setPublished(resultSet.getInt(index++));
+	private void loadTextPost(TextPost post, ResultSet resultSet, int index) throws SQLException {
+		post.setPostId(resultSet.getInt(index++));
+		post.setUserId(resultSet.getInt(index++));  // no longer used
+		post.setTitle(resultSet.getString(index++));
+		post.setContents(resultSet.getString(index++));
 	}
 	
 	// retrieves WrittenBy information from query result set
-	private void loadBookAuthors(BookAuthor bookAuthor, ResultSet resultSet, int index) throws SQLException {
-		bookAuthor.setBookId(resultSet.getInt(index++));
-		bookAuthor.setAuthorId(resultSet.getInt(index++));
-	}
-*/
+//	private void loadBookAuthors(BookAuthor bookAuthor, ResultSet resultSet, int index) throws SQLException {
+//		bookAuthor.setBookId(resultSet.getInt(index++));
+//		bookAuthor.setAuthorId(resultSet.getInt(index++));
+//	}
+
 	//  creates the Authors and Books tables
 	public void createTables() {
 		executeTransaction(new Transaction<Boolean>() {
@@ -1037,13 +1037,120 @@ public class DerbyDatabase implements IDatabase {
 	@Override
 	public List<edu.ycp.cs320.ms1.model.Pair<User, TextPost>> findUserAndTextPostByTitle(String title) {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		return executeTransaction(new Transaction<List<Pair<User,TextPost>>>() { 
+			@Override 
+			public List<Pair<User, TextPost>> execute(Connection conn) throws SQLException { 
+				PreparedStatement stmt = null; 
+				ResultSet resultSet = null; 
+			
+			try { 
+				// retrieve all attributes from both Books and Authors tables 
+				stmt = conn.prepareStatement( 
+							"select users.*, textPosts.* " + 
+							"  from users, textPosts " + 
+							" where users.user_id = textPosts.user_id " + 
+							"   and textPosts.title = ?" 
+				); 
+				
+				stmt.setString(1, title); 
+				
+				List<Pair<User, TextPost>> result = new ArrayList<Pair<User,TextPost>>(); 
+				
+				resultSet = stmt.executeQuery(); 
+				
+				// for testing that a result was returned 
+				Boolean found = false; 
+				
+				while (resultSet.next()) { 
+					found = true; 
+				
+					// create new Author object 
+					// retrieve attributes from resultSet starting with index 1 
+					User user = new User(); 
+					loadUser(user, resultSet, 1); 
+
+					// create new Book object 
+					// retrieve attributes from resultSet starting at index 4 
+					TextPost textPosts = new TextPost(); 
+					loadTextPost(textPosts, resultSet, 4); 
+					  
+					result.add(new Pair<User, TextPost>(user, textPosts)); 
+				} 
+
+				// check if the title was found 
+				if (!found) { 
+					System.out.println("<" + title + "> was not found in the textPosts table"); 
+				} 
+
+				return result; 
+			} 
+			
+			finally { 
+				DBUtil.closeQuietly(resultSet); 
+				DBUtil.closeQuietly(stmt); 
+			} 
+			} 
+		}); 
+} 
+
 
 	@Override
 	public List<edu.ycp.cs320.ms1.model.Pair<User, TextPost>> findUserAndTextPostByUsername(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<List<Pair<User,TextPost>>>() { 
+			@Override 
+			public List<Pair<User, TextPost>> execute(Connection conn) throws SQLException { 
+				PreparedStatement stmt = null; 
+				ResultSet resultSet = null; 
+			
+				try { 
+				// retrieve all attributes from both Books and Authors tables 
+				stmt = conn.prepareStatement( 
+							"select users.*, textPosts.* " + 
+							"  from users, textPosts " + 
+							" where users.user_id = textPosts.user_id " + 
+							"   and users.username = ?" 
+				); 
+				
+				stmt.setString(1, username); 
+				
+				List<Pair<User, TextPost>> result = new ArrayList<Pair<User,TextPost>>(); 
+				
+				resultSet = stmt.executeQuery(); 
+				
+				// for testing that a result was returned 
+				Boolean found = false; 
+				
+				while (resultSet.next()) { 
+					found = true; 
+				
+					// create new Author object 
+					// retrieve attributes from resultSet starting with index 1 
+					User user = new User(); 
+					loadUser(user, resultSet, 1); 
+
+					// create new Book object 
+					// retrieve attributes from resultSet starting at index 4 
+					TextPost textPosts = new TextPost(); 
+					loadTextPost(textPosts, resultSet, 4); 
+					  
+					result.add(new Pair<User, TextPost>(user, textPosts)); 
+				} 
+
+				// check if the title was found 
+				if (!found) { 
+					System.out.println("<" + username + "> was not found in the Users table"); 
+				} 
+
+				return result; 
+			} 
+			
+			finally { 
+				DBUtil.closeQuietly(resultSet); 
+				DBUtil.closeQuietly(stmt); 
+			} 
+			} 
+		}); 
 	}
 
 	public List<TextPost> findAllTextPosts() {

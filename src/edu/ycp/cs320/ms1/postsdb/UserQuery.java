@@ -17,7 +17,7 @@ public class UserQuery {
 		// Create the default IDatabase instance
 		InitDatabase.init(keyboard);
 		
-		System.out.print("Enter an user's name: ");
+		System.out.print("Enter a user's name: ");
 		String username = keyboard.nextLine();
 		
 		// get the DB instance and execute transaction
