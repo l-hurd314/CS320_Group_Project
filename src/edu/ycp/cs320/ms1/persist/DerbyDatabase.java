@@ -196,13 +196,10 @@ public class DerbyDatabase implements IDatabase {
 					try {
 						stmt = conn.prepareStatement(
 								"select * from USERS " 
-							  + "where users.username = ?"
 						);
 						
-						stmt.setString(1, username);
+						List<User> resultlist = new ArrayList<User>();
 						
-						List<String> resultlist = new ArrayList<String>();
-						//result.get(0).intValue();
 						resultSet = stmt.executeQuery();
 						
 						// for testing that a result was returned
@@ -213,9 +210,12 @@ public class DerbyDatabase implements IDatabase {
 							
 							User user = new User();
 							loadUser(user, resultSet, 1);
-							
 							//System.out.println(user.getPassword());
-							resultlist.add(user.getPassword());
+							if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+								resultlist.add(user);
+								System.out.print(user.getUsername() + ", " + user.getPassword() + " added.");
+							}
+							
 						}
 						
 						int result;
@@ -232,9 +232,9 @@ public class DerbyDatabase implements IDatabase {
 						else if(resultlist.size()>1){
 							result = 2;
 						}
-						else if(resultlist.size()==1  &&  resultlist.get(0) != null) {
-							System.out.println(resultlist.get(0));
-							String dbPass = new String(resultlist.get(0));
+						else if(resultlist.size()==1  /*&&  resultlist.get(0) != null*/) {
+							/*System.out.println(resultlist.get(0));
+							String dbPass = new String(resultlist.get(0).getPassword());
 							System.out.println(dbPass);
 							if(dbPass.equals(password)){
 								result = 1;
@@ -242,10 +242,12 @@ public class DerbyDatabase implements IDatabase {
 							}
 							else {
 								result = 0;
-							}
+							}*/
+							result = 1;
+							System.out.println("Matched.");
 						}
 						else {
-							result = 3;
+							result = 3; //if you see this, shit totally fucked up.
 						}
 						
 						return result;
@@ -323,7 +325,7 @@ public class DerbyDatabase implements IDatabase {
 						
 						User user = new User();
 						loadUser(user, resultSet, 1);
-						
+						System.out.println(user.getPassword());
 						result.add(user);
 					}
 					
@@ -331,7 +333,7 @@ public class DerbyDatabase implements IDatabase {
 					if (!found) {
 						System.out.println("No users were found in the database");
 					}
-					
+					System.out.println("Execute done, now returning...");
 					return result;
 				} finally {
 					DBUtil.closeQuietly(resultSet);

@@ -124,9 +124,9 @@ private IDatabase db = null;
 	}*/
 
 	@Test
-	public void testFindAllAuthors() {
+	public void testFindAllUsers() {
 
-		System.out.println("\n*** Testing findAllAuthors ***");
+		System.out.println("\n*** Testing findAllUsers ***");
 
 		// get the list of (Author, Book) pairs from DB
 		List<User> users = db.findAllUsers();
@@ -136,7 +136,7 @@ private IDatabase db = null;
 			fail("No users found from DB.");
 		}
 		else {
-			System.out.println("User <" + users.get(users.size()-1).getUsername() + "> added to Library DB");
+			System.out.println("Users found in Library DB");
 		}	
 	}
 	
@@ -159,12 +159,12 @@ private IDatabase db = null;
 		System.out.println("#6");
 		int result6 = db.isGoodCreds("Ritchie", "Matt");
 		
-		//assertEquals(1, result1); //fail was -1
+		assertEquals(1, result1); //fail was -1
 		assertEquals(-1, result2);
-		//assertEquals(0, result3); //fail was -1
+		assertEquals(0, result3); //fail was -1
 		assertEquals(-1, result4);
-		//assertEquals(2, result5); //fail was 3
-		//assertEquals(1, result6); //fail was -1
+		assertEquals(2, result5); //fail was 3
+		assertEquals(1, result6); //fail was -1
 	}
 	
 	@Test
