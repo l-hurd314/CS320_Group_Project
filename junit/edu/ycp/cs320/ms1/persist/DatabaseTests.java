@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.ycp.cs320.ms1.model.Pair;
+import edu.ycp.cs320.ms1.model.TextPost;
 import edu.ycp.cs320.ms1.model.User;
 import edu.ycp.cs320.ms1.persist.DerbyDatabase;
 
@@ -141,6 +142,23 @@ private IDatabase db = null;
 	}
 	
 	@Test
+	public void testFindAllTextPosts() {
+
+		System.out.println("\n*** Testing findAllTextPosts ***");
+
+		// get the list of (Author, Book) pairs from DB
+		List<TextPost> posts = db.findAllTextPosts();
+		
+		if (posts.isEmpty()) {
+			System.out.println("Failed to find posts from DB.");
+			fail("No posts found from DB.");
+		}
+		else {
+			System.out.println("Posts found in Library DB");
+		}	
+	}
+	
+	@Test
 	public void testIsGoodCreds() {
 
 		System.out.println("\n*** Testing isGoodCreds ***");
@@ -148,17 +166,29 @@ private IDatabase db = null;
 		// get the list of (Author, Book) pairs from DB
 		System.out.println("#1");
 		int result1 = db.isGoodCreds("Hurd", "Liam");
+		System.out.println(result1);
+		
 		System.out.println("#2");
 		int result2 = db.isGoodCreds("Hurr", "Durr");
+		System.out.println(result2);
+		
 		System.out.println("#3");
 		int result3 = db.isGoodCreds("Hurd", "Bleh");
+		System.out.println(result3);
+		
 		System.out.println("#4");
 		int result4 = db.isGoodCreds("Hurrd", "Liam");
+		System.out.println(result4);
+		
 		System.out.println("#5");
 		int result5 = db.isGoodCreds("Testman2", "one");
+		System.out.println(result5);
+		
 		System.out.println("#6");
 		int result6 = db.isGoodCreds("Ritchie", "Matt");
+		System.out.println(result6);
 		
+		//all works now?
 		assertEquals(1, result1); //fail was -1
 		assertEquals(-1, result2);
 		assertEquals(0, result3); //fail was -1
