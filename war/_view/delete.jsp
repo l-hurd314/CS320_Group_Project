@@ -15,7 +15,7 @@
 			</div>
 			
 			<div class="header"> 
-				Photo/File Forum 
+				CS320 Public Forum
 		    </div>   
 		    
 		   <div class="main_bar"> 

@@ -26,9 +26,9 @@ public class UserHomeServlet extends HttpServlet {
 		UserHomeController c = new UserHomeController();
 		if(req.getSession().getAttribute("username") != null){
 			username = (String) req.getSession().getAttribute("username");
-			List posts = c.findMyTextPosts(username);
+			List posts = c.findAllTextPosts();
 			//System.out.println(posts.size());
-			req.setAttribute("myPosts", posts);
+			req.setAttribute("allPosts", posts);
 			username = (String) req.getSession().getAttribute("username");
 		}
 		else{
@@ -56,7 +56,7 @@ public class UserHomeServlet extends HttpServlet {
 				username = (String) req.getSession().getAttribute("username");
 				List posts = c.findAllTextPosts();
 				System.out.println(posts.size());
-				req.setAttribute("myPosts", posts);				
+				req.setAttribute("allPosts", posts);				
 			}
 			else{
 				/*List posts = c.findAllTextPosts();
@@ -67,16 +67,16 @@ public class UserHomeServlet extends HttpServlet {
 			
 			
 			if(req.getParameter("Post") != null){
-				List posts = c.findMyTextPosts(username);
+				List posts = c.findAllTextPosts();
 				System.out.println(posts.size());
-				req.setAttribute("myPosts", posts);
+				req.setAttribute("allPosts", posts);
 				resp.sendRedirect(req.getContextPath() + "/Post");
 			}
 			
 			if(req.getParameter("New Post") != null){
-				List posts = c.findMyTextPosts(username);
+				List posts = c.findAllTextPosts();
 				System.out.println(posts.size());
-				req.setAttribute("myPosts", posts);
+				req.setAttribute("allPosts", posts);
 				resp.sendRedirect(req.getContextPath() + "/NewPost");
 			}
 

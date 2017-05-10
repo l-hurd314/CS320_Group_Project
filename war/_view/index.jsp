@@ -16,14 +16,13 @@
 			</div>
 			
 			<div class="header"> 
-				Photo/File Forum 
+				CS320 Public Forum
 		    </div>   
 		    	    
 		    
 		    <form action="${pageContext.servletContext.contextPath}/index" method="post">
 				<input name="signup" type="Submit" value="Sign Up" class="signup" class="signup:hover">
 			</form>
-			
 							
 			<form action="${pageContext.servletContext.contextPath}/index" method="post">
 				<input name="login" type="Submit" value="Login" class="login" class="login:hover">
@@ -32,6 +31,12 @@
 			 <div class="main_bar"> 
 				Welcome! 
 		    </div> 
+		    
+			<form action="${pageContext.servletContext.contextPath}/index" method="post">
+				<input name="guest" type="Submit" value="Enter as Guest" class="dropbtn" class="dropbtn:hover">
+			</form>
+			
+			<br>
 		    
 		    <div class="img">
 		    	<img src="https://68.media.tumblr.com/eef642c1e3777674f4343757b991a208/tumblr_om7oe5g4CA1u3233wo2_1280.jpg" alt=""/>

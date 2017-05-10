@@ -16,7 +16,7 @@
 			</div>
 			
 			<div class="header"> 
-				Photo/File Forum 
+				CS320 Public Forum 
 		    </div>   
 		    
 		    <div class="main_bar"> 
@@ -24,21 +24,33 @@
 		    </div>
 		    
 		    <div class="postList">
-		    	<c:forEach items="${myPosts}" var="item" varStatus="i">
-		    	<tr>
-					<h>${item.title } </h>
-					<br>${item.contents }</br>
-						<form action="${pageContext.servletContext.contextPath}/delete" method="get">
-							<input name="delete" type="Submit" value="Delete" class="login_page_button" class="login_page_button:hover"><br><br><br>
-						</form>
+		    	<c:forEach items="${allPosts}" var="item" varStatus="i">
+			    	<tr>
+				    	<td>
+							${item.title } 	
+						</td>
+							
+						<td>
+							<ul style="list-style-type:circle">
+								<li>${item.contents }</li>
+							</ul>
+						</td>
+						
+						<td>
+							<form action="${pageContext.servletContext.contextPath}/delete" method="get">
+								<input name="delete" type="Submit" value="Delete" class="login_page_button" class="login_page_button:hover"><br><br><br>
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 		    </div> 
 		    
-		    <div class="postList">
+		    <!--
+		    <div class="postList">	
+
 		    	<c:forEach items="${fi}" var="item" varStatus="i">
 		    	<tr>
-		    		<img src="${pageContext.request.contextPath}/CS320_ms1/nullPenguin.jpg"/>
+		    		<p><${pageContext.request.contextPath}/war/exploitAllTheCores.jpg/></p>
 					<h>${item.fileName } </h>
 					<br>${item.contents }</br>
 						<form action="${pageContext.servletContext.contextPath}/delete" method="get">
@@ -47,13 +59,13 @@
 					</tr>
 				</c:forEach>
 		    </div> 
+		    -->
 			
 			<br><br>
 			
 			 <form action="${pageContext.servletContext.contextPath}/NewPost" method="get">
-				<input name="NewPost" type="Submit" value="New Post" class="NewPost" class="NewPost:hover">
-			</form>
-									
+				<input name="NewPost" type="Submit" value="New Comment" class="NewPost" class="NewPost:hover">
+			</form>			
 		</div>
 	</body>
 </html>

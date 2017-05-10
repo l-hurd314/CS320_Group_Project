@@ -16,11 +16,11 @@
 			</div>
 			
 			<div class="header"> 
-				Photo/File Forum 
+				CS320 Public Forum 
 		    </div>   
 		    
 		    <div class="main_bar"> 
-				New Post
+				New Comment
 		    </div> 
 		    
 		    <!--
@@ -41,30 +41,31 @@
 					<div class="success">Successfully added ${successMessage} to Library</div>
 				</c:if>
 				
-				<!-- 
+				
 				
 				<form action="${pageContext.servletContext.contextPath}/NewPost" method="post">
 					<table>
 						<tr>
-							<td class="label">Title:</td>
-							<td><input type="text" name="title" size="20" value="${title}" class="title_text_box" class="title_text_box:hover"></td>
+							<td class="label">Name:</td>
+							<td><input type="text" name="title" size="20" value="${allPosts.title}" class="title_text_box" class="title_text_box:hover"></td>
 						</tr>
 						<tr>
-							<td class="label">Text:</td>
-							<td><input type="text" name="text" size="20" value="${text}" class="text_box" class="text_box:hover"></td>
+							<td class="label">Comment:</td>
+							<td><input type="text" name="text" size="20" value="${allPosts.text}" class="text_box" class="text_box:hover"></td>
 						</tr>	
 					</table>
 					<input type="Submit" name="login" value="Submit" class="login_page_button login_page_button:hover">
 				</form>
 				
-				 -->
 				 
+				 <!-- 
 				 <form action="${pageContext.servletContext.contextPath}/NewPost" method="post" enctype="multipart/form-data">
 			      		<input type="file" name="file" size="100"/>
 			       <br />
 			       <br />
 			    		<input type="submit" value="Upload File" class="login_page_button login_page_button:hover"/>
 			       </form>
+			      -->
 			</div>		
 		</div>
 	</body>

@@ -182,7 +182,7 @@ a:active {
    cursor: url("http://cursors1.totallyfreecursors.com/thumbnails/dragonflyblue.gif"), auto;
 }
 
-.dropbtn {
+input.dropbtn {
     background-color: white;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 	text-align: center;
@@ -192,12 +192,12 @@ a:active {
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-    float: left;
 	width: 175px;
+	float: right;
 	cursor: url(http://cursors0.totallyfreecursors.com/thumbnails/dragonflyglitter21.gif), auto;
 }
 
-.dropbtn:hover {
+input.dropbtn:hover {
     background-color: #9ec2ff;
     color: white;
 }
