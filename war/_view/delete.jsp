@@ -23,7 +23,7 @@
 		    </div> 
 		
 			<div>
-				<form action="${pageContext.servletContext.contextPath}/UserHome" method="get">
+				<form action="${pageContext.servletContext.contextPath}/delete" method="post">
 					<input name="yes" type="Submit" value="Yes" class="login_page_button" class="login_page_button:hover">
 				</form>
 				

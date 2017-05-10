@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import edu.ycp.cs320.ms1.controller.InsertPostController;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+//import org.apache.commons.fileupload.FileItem;
+//import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+//import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
 public class NewPostServlet extends HttpServlet {

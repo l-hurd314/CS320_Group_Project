@@ -589,8 +589,9 @@ public class DerbyDatabase implements IDatabase {
 		});
 	}
 	
-	public Integer deletePost(int post_id, int user_id) {
+	public Integer deletePost(int post_id) {
 		// TODO Auto-generated method stub
+		//Thank you Dan for walking us through how to fix this method
 		
 		return executeTransaction(new Transaction<Integer>() {
 			@Override
@@ -602,46 +603,34 @@ public class DerbyDatabase implements IDatabase {
 				ResultSet resultSet2 = null;
 				int user = -1;
 				int result = -1;
-
+				
+				List<TextPost> post = findAllTextPosts();
+				TextPost text = post.get(post_id);
+				
 				try {
+					String title = "";
 					//get target post's user-----------------------------------
 					stmt1 = conn.prepareStatement(
-							"select * from textposts " 
-						  + "where post_id = ?"
+							"select * from textPosts " 
+						  + "where title = ?"
 					);
 					
-					stmt1.setInt(1, post_id);
+					stmt1.setString(1, text.getTitle() );
 					
 					resultSet1 = stmt1.executeQuery();
 					
 					while(resultSet1.next()){
-						user = resultSet1.getInt(2);
+						title = resultSet1.getString(3);
 					}
 					
 					//if yours, delete-----------------------------------------
-					if(user == user_id){
 						stmt2 = conn.prepareStatement(
-						"delete from textPosts"
-					  + "where post_id = ?"
+						"delete from textPosts "
+					  + "where title = ?"
 					  );
-					  stmt2.setInt(1, post_id);
+					  stmt2.setString(1, text.getTitle() );
 					  stmt2.executeUpdate();
-					}
-					
-					//confirm deletion-----------------------------------------
-					stmt3 = conn.prepareStatement(
-							"select * from textposts " 
-						  + "where post_id = ?"
-					);
-					
-					stmt3.setInt(1, post_id);
-					
-					resultSet2 = stmt3.executeQuery();
-					
-					if(!resultSet2.next()){
-						result = 1;
-					}
-					
+
 				} finally {
 					
 					DBUtil.closeQuietly(stmt1);	
@@ -1352,7 +1341,36 @@ public class DerbyDatabase implements IDatabase {
 	@Override
 	public TextPost findTextPostByTitle(String title) {
 		// TODO Auto-generated method stub
-		return null;
+		return executeTransaction(new Transaction<TextPost>() {
+			@Override
+			public TextPost execute(Connection conn) throws SQLException {
+				
+				//List<BookAuthor> bookAuthorList;
+				//TextPost postList = TextPost();
+				PreparedStatement stmt1 = null;
+				ResultSet resultSet;
+
+				try {
+					stmt1 = conn.prepareStatement(
+						"select * from textPosts"
+					  + "where user_id = ?"
+					);
+					
+					//stmt1.setInt(1, user.getUserId());
+					
+					resultSet = stmt1.executeQuery();
+						
+					TextPost postList = new TextPost(resultSet.getInt(2), resultSet.getString(3), resultSet.getString(4));
+						
+					return postList;
+				} finally {
+					
+					DBUtil.closeQuietly(stmt1);				
+				}
+			}
+		});
+		
+		//return null;
 	}
 
 	@Override

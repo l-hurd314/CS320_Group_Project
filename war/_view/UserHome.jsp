@@ -38,7 +38,7 @@
 						
 						<td>
 							<form action="${pageContext.servletContext.contextPath}/delete" method="get">
-								<input name="delete" type="Submit" value="Delete" class="login_page_button" class="login_page_button:hover"><br><br><br>
+								<input name="delete" type="Submit" value=${i.index } class="login_page_button" class="login_page_button:hover"><br><br><br>
 							</form>
 						</td>
 					</tr>

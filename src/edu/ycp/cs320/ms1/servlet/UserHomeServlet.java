@@ -44,7 +44,7 @@ public class UserHomeServlet extends HttpServlet {
 	}
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 				throws ServletException, IOException {
-			
+			System.out.println("WENT HERE");
 			if(req.getAttribute("text") != null && req.getAttribute("title") != null){
 				InsertPostController controller = new InsertPostController();
 				controller.insertPostIntoPostsTable(req.getAttribute("title").toString(), "testuser", req.getAttribute("content").toString());
